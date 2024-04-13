@@ -1,6 +1,3 @@
-import 'dart:collection';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_exploring/text_style.dart';
 
@@ -28,26 +25,52 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Screen'),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: _buildAppBar(),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              height: 400,
-              width: 300,
-              child: _buildGridTile(context, 'First'),
-            )
-            // _buildGridTile(context, 'First'),
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              _buildSizedGridTile(),
+              _buildMaterialBanner(context),
+            ],
+          ),
         ),
       ),
     );
   }
 
-  _buildGridTile(BuildContext context, String s) => GridTile(
+  SafeArea _buildAppBar() {
+    return SafeArea(
+      child: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blue, Colors.green],
+          ),
+        ),
+        height: 60,
+        child: const Center(
+          child: Text(
+            'Coffee Shop',
+            style: AppTextStyle.w600_18whiteTextStyle,
+          ),
+        ),
+      ),
+    );
+  }
+
+  SizedBox _buildSizedGridTile() {
+    return SizedBox(
+      height: 400,
+      width: 300,
+      child: _buildGridTile(),
+    );
+  }
+
+  _buildGridTile() => GridTile(
         header: const GridTileBar(
           leading: Icon(Icons.person),
           title: Text(
@@ -68,7 +91,29 @@ class HomeScreen extends StatelessWidget {
         child: Image.network(
           fit: BoxFit.cover,
           'https://i.ibb.co/jfkTmvb/coffe.jpg',
+          scale: 0.5,
           errorBuilder: (context, error, stackTrace) => const Icon(Icons.error),
         ),
       );
+
+  Widget _buildMaterialBanner(BuildContext context) {
+    return TextButton(
+      onPressed: () {
+        ScaffoldMessenger.of(context).showMaterialBanner(
+          MaterialBanner(
+            content: const Text('Subscribe!'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+                },
+                child: const Text('Dismiss'),
+              ),
+            ],
+          ),
+        );
+      },
+      child: const Text('Show Banner'),
+    );
+  }
 }
