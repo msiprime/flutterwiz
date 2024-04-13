@@ -1,14 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_exploring/text_style.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeScreen1 extends StatefulWidget {
+  const HomeScreen1({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeScreen1> createState() => _HomeScreen1State();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreen1State extends State<HomeScreen1> {
+  bool flag = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +29,8 @@ class _HomeScreenState extends State<HomeScreen> {
               _buildBottomModalSheet(context),
               _buildInteractiveViewer(),
               _buildReorderableListView(),
+              _buildCheckBoxListTile(),
+              _buildCupertinoContextMenu(),
             ],
           ),
         ),
@@ -140,29 +145,78 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _buildReorderableListView() {
-    return SizedBox(
-      height: 800,
-      child: ReorderableListView(
-        physics: const NeverScrollableScrollPhysics(),
-        children: List.generate(
-          listOfProduct.length,
-          (index) => ListTile(
-            trailing: const Icon(Icons.drag_handle),
-            selected: true,
-            selectedTileColor: Colors.amberAccent,
-            key: ValueKey(index),
-            title: Text(listOfProduct[index].name),
-          ),
+    return ReorderableListView(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      children: List.generate(
+        listOfProduct.length,
+        (index) => ListTile(
+          trailing: const Icon(Icons.drag_handle),
+          selected: true,
+          selectedTileColor: Colors.amberAccent,
+          key: ValueKey(index),
+          title: Text(listOfProduct[index].name),
         ),
-        onReorder: (oldIndex, newIndex) {
+      ),
+      onReorder: (oldIndex, newIndex) {
+        setState(() {
+          if (oldIndex < newIndex) {
+            newIndex -= 1;
+          }
+          final item = listOfProduct.removeAt(oldIndex);
+          listOfProduct.insert(newIndex, item);
+        });
+      },
+    );
+  }
+
+  Widget _buildCheckBoxListTile() {
+    return ListView.separated(
+      physics: const NeverScrollableScrollPhysics(),
+      shrinkWrap: true,
+      itemBuilder: (context, index) => CheckboxListTile(
+        value: flag,
+        onChanged: (value) {
           setState(() {
-            if (oldIndex < newIndex) {
-              newIndex -= 1;
-            }
-            final item = listOfProduct.removeAt(oldIndex);
-            listOfProduct.insert(newIndex, item);
+            flag = !flag;
           });
         },
+        title: Text(listOfProduct[index].name),
+        subtitle: Text(listOfProduct[index].description),
+        secondary: Text(
+          '\$ ${listOfProduct[index].price}',
+          style: AppTextStyle.w400_15TextStyle,
+        ),
+        controlAffinity: ListTileControlAffinity.leading,
+      ),
+      separatorBuilder: (context, index) => const Divider(),
+      itemCount: listOfProduct.length,
+    );
+  }
+
+  Widget _buildCupertinoContextMenu() {
+    return CupertinoContextMenu(
+      actions: [
+        CupertinoContextMenuAction(
+          child: const Text('Edit'),
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Edit')),
+            );
+          },
+        ),
+        CupertinoContextMenuAction(
+          child: const Text('Delete'),
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Delete')),
+            );
+          },
+        ),
+      ],
+      child: const Icon(
+        Icons.access_alarm,
+        size: 60,
       ),
     );
   }
