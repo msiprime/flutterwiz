@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_exploring/value_notifier_test_ground.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,8 +12,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       debugShowMaterialGrid: false,
       title: 'Flutter Demo',
-      theme: ThemeData.dark(),
-      darkTheme: ThemeData.dark(),
+      theme: ThemeData.light(),
+      darkTheme: ThemeData.light(),
       themeMode: ThemeMode.dark,
       home: const HomePage(),
     );
@@ -28,9 +29,22 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Flutter Demo'),
       ),
-      body: const Center(
-        child: Text('Hello World'),
+      body: Center(
+        child: Column(
+          children: [
+            const Text('Hello World'),
+            FilledButton(
+                onPressed: () {
+                  goToPage(context, const ValueNotifierTestGround());
+                },
+                child: const Text('Go To ValueNotifier Test Ground')),
+          ],
+        ),
       ),
     );
   }
+}
+
+void goToPage(BuildContext context, Widget page) {
+  Navigator.push(context, MaterialPageRoute(builder: (context) => page));
 }
