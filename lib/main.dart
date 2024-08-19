@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Flutter Demo'),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           children: [
             Text('Hello World'),
