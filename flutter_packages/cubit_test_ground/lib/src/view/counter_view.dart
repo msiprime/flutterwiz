@@ -20,21 +20,26 @@ class CounterView extends StatelessWidget {
           children: [
             Text(DateTime.now().toIso8601String()),
             Text('You have pushed the button this many times:'),
-            Text('${counterCubit.state.data}'),
+            Text('${counterCubit.state}'),
             BlocBuilder<CounterCubit, CounterState>(
               builder: (context, state) {
-                if (state.screenStatus == CounterScreenStatus.loading)
+                if (state is CounterInitial) {
+                  return Text('Initial');
+                } else if (state is CounterLoading) {
                   return CircularProgressIndicator();
-                else if (state.screenStatus == CounterScreenStatus.loaded)
-                  return Text('${state.data}');
-                else
+                } else if (state is CounterError) {
                   return Text('Error');
+                } else if (state is CounterLoaded) {
+                  return Text(state.data);
+                } else {
+                  return Text('Unknown');
+                }
               },
             ),
-            Text('${context.select((CounterCubit cubit) => cubit.state.data)}'),
+            // Text('${context.select((CounterCubit cubit) => cubit.state)}'),
             TextButton(
                 onPressed: () {
-                  counterCubit.fetchData();
+                  context.read<CounterCubit>().fetchData();
                 },
                 child: Text('fetch data')),
           ],

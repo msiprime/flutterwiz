@@ -4,18 +4,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'counter_state.dart';
 
 class CounterCubit extends Cubit<CounterState> {
-  CounterCubit() : super(CounterState.initial());
+  CounterCubit() : super(CounterInitial());
 
   void fetchData() async {
-    emit(state.copyWith(screenStatus: CounterScreenStatus.loading));
+    // emit(state.copyWith(screenStatus: CounterScreenStatus.loading));
+    // try {
+    //   final data = await FakeRepository().fetchString();
+    //   emit(state.copyWith(
+    //     screenStatus: CounterScreenStatus.loaded,
+    //     data: data,
+    //   ));
+    // } catch (e) {
+    //   emit(state.copyWith(screenStatus: CounterScreenStatus.error));
+    // }
+    emit(CounterLoading());
     try {
-      final data = await FakeRepository().fetchString();
-      emit(state.copyWith(
-        screenStatus: CounterScreenStatus.loaded,
-        data: data,
-      ));
+      final String data = await FakeRepository().fetchString();
+      emit(CounterLoaded(data: data));
     } catch (e) {
-      emit(state.copyWith(screenStatus: CounterScreenStatus.error));
+      emit(CounterError());
     }
   }
 }
