@@ -33,9 +33,8 @@ class HomePage extends StatelessWidget {
       ),
       body: const Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox(height: 20),
             GoTo(page: CubitPage(), pageName: 'Counter'),
             GoTo(page: CubitPage(), pageName: 'Counter'),
           ],
