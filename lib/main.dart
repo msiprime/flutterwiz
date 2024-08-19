@@ -1,5 +1,6 @@
 import 'package:cubit_test_ground/cubit_test_ground.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
 
 void main() => runApp(const MyApp());
@@ -9,14 +10,21 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      debugShowMaterialGrid: false,
-      title: 'Flutter Demo',
-      theme: ThemeData.dark(),
-      darkTheme: ThemeData.dark(),
-      themeMode: ThemeMode.dark,
-      home: const HomePage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<CounterCubit>(
+          create: (context) => CounterCubit(),
+        ),
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        debugShowMaterialGrid: false,
+        title: 'Flutter Demo',
+        theme: ThemeData.dark(),
+        darkTheme: ThemeData.dark(),
+        themeMode: ThemeMode.dark,
+        home: const HomePage(),
+      ),
     );
   }
 }
@@ -35,8 +43,8 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 20),
-            GoTo(page: CubitPage(), pageName: 'Counter'),
-            GoTo(page: CubitPage(), pageName: 'Counter'),
+            GoTo(page: CounterView(), pageName: 'Counter'),
+            // GoTo(page: CubitPage(), pageName: 'Counter'),
           ],
         ),
       ),

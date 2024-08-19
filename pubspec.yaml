@@ -16,6 +16,7 @@ dependencies:
   cli_completion: ^0.5.1
   cubit_test_ground:
     path: flutter_packages/cubit_test_ground
+  equatable: ^2.0.5
 
 
 
