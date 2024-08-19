@@ -28,8 +28,13 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Flutter Demo'),
       ),
-      body: const Center(
-        child: Text('Hello World'),
+      body: Center(
+        child: Column(
+          children: [
+            Text('Hello World'),
+            // CubitTestGround(),
+          ],
+        ),
       ),
     );
   }
