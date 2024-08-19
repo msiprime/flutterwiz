@@ -1,19 +1,35 @@
 import 'package:equatable/equatable.dart';
 
-enum Counter { initial, loading, loaded }
+enum CounterScreenStatus { initial, loading, loaded, error }
 
 class CounterState extends Equatable {
   final int count;
+  final String data;
+  final CounterScreenStatus screenStatus;
 
-  CounterState(this.count);
+  CounterState({
+    required this.count,
+    required this.data,
+    required this.screenStatus,
+  });
+
+  CounterState.initial()
+      : count = 0,
+        screenStatus = CounterScreenStatus.initial,
+        data = '';
+
+  CounterState copyWith({
+    int? count,
+    String? data,
+    CounterScreenStatus? screenStatus,
+  }) {
+    return CounterState(
+      screenStatus: screenStatus ?? this.screenStatus,
+      count: count ?? this.count,
+      data: data ?? this.data,
+    );
+  }
 
   @override
-  List<Object?> get props => [count];
-}
-
-class FakeRepository {
-  Future<String> fetchString() async {
-    await Future.delayed(const Duration(seconds: 5));
-    return 'fake string';
-  }
+  List<Object?> get props => [count, data, screenStatus];
 }

@@ -1,4 +1,5 @@
 import 'package:cubit_test_ground/src/cubit/counter_cubit.dart';
+import 'package:cubit_test_ground/src/cubit/counter_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -7,6 +8,7 @@ class CounterView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final counterCubit = context.read<CounterCubit>();
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -18,31 +20,28 @@ class CounterView extends StatelessWidget {
           children: [
             Text(DateTime.now().toIso8601String()),
             Text('You have pushed the button this many times:'),
-            Text('${context.read<CounterCubit>().state}',
-                style: Theme.of(context).textTheme.titleMedium),
-            Text(
-              // '${state}',
-              // '${context.watch<CounterCubit>().state}',
-              '${context.select((CounterCubit cubit) => cubit.state)}',
-              style: Theme.of(context).textTheme.titleMedium,
+            Text('${counterCubit.state.data}'),
+            BlocBuilder<CounterCubit, CounterState>(
+              builder: (context, state) {
+                if (state.screenStatus == CounterScreenStatus.loading)
+                  return CircularProgressIndicator();
+                else if (state.screenStatus == CounterScreenStatus.loaded)
+                  return Text('${state.data}');
+                else
+                  return Text('Error');
+              },
             ),
+            Text('${context.select((CounterCubit cubit) => cubit.state.data)}'),
             TextButton(
                 onPressed: () {
-                  context.read<CounterCubit>().reset();
+                  counterCubit.fetchData();
                 },
-                child: Text('Reset Counter')),
-            TextButton(
-                onPressed: () {
-                  context.read<CounterCubit>().stopWatch();
-                },
-                child: Text('Stop watch')),
+                child: Text('fetch data')),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.read<CounterCubit>().increment();
-        },
+        onPressed: () {},
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ),
