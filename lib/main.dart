@@ -37,6 +37,7 @@ class HomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             GoTo(page: CubitPage(), pageName: 'Counter'),
+            GoTo(page: CubitPage(), pageName: 'Counter'),
           ],
         ),
       ),
