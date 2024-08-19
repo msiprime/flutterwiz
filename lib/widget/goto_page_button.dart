@@ -1,0 +1,30 @@
+import 'package:flutter/material.dart';
+
+class GoTo extends StatelessWidget {
+  final Widget page;
+  final String pageName;
+
+  const GoTo({
+    super.key,
+    required this.page,
+    required this.pageName,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton(
+        style: ButtonStyle(
+          shape: WidgetStateProperty.all(RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          )),
+          textStyle: WidgetStateProperty.all(const TextStyle(fontSize: 19)),
+          backgroundColor: WidgetStateProperty.all(Colors.grey),
+          foregroundColor: WidgetStateProperty.all(Colors.black),
+        ),
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => page));
+        },
+        child: Text('Go to $pageName page'));
+  }
+}
