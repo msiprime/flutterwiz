@@ -1,3 +1,4 @@
+import 'package:cubit_test_ground/cubit_test_ground.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());
@@ -28,14 +29,40 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Flutter Demo'),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           children: [
-            Text('Hello World'),
-            // CubitTestGround(),
+            const Text('Hello World'),
+            FilledButton(
+              onPressed: () {
+                const GoTo(page: CubitPage(), pageName: 'Counter');
+              },
+              child: const Text('Go to this page'),
+            )
           ],
         ),
       ),
     );
+  }
+}
+
+class GoTo extends StatelessWidget {
+  final Widget page;
+  final String pageName;
+
+  const GoTo({
+    super.key,
+    required this.page,
+    required this.pageName,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton(
+        onPressed: () {
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => page));
+        },
+        child: Text('Go to $pageName'));
   }
 }

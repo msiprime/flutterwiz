@@ -14,6 +14,11 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_bloc: ^8.1.6
   cli_completion: ^0.5.1
+  cubit_test_ground:
+    path: flutter_packages/cubit_test_ground
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
