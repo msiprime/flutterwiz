@@ -32,30 +32,8 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  late final TextEditingController variableOne;
-  late final TextEditingController variableTwo;
-
-  @override
-  void initState() {
-    variableOne = TextEditingController();
-    variableTwo = TextEditingController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    variableTwo.dispose();
-    variableOne.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -70,29 +48,11 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 20),
             const GoTo(page: CounterView(), pageName: 'Counter'),
             const GoTo(page: BlocTestingPage(), pageName: 'Bloc Testing'),
-            MyCustomTextField(controller: variableOne),
-            MyCustomTextField(controller: variableTwo),
             FilledButton(
                 onPressed: () {}, child: const Text('Print Textfield value'))
           ],
         ),
       ),
-    );
-  }
-}
-
-class MyCustomTextField extends StatelessWidget {
-  final TextEditingController controller;
-
-  const MyCustomTextField({
-    super.key,
-    required this.controller,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
-      controller: controller,
     );
   }
 }
