@@ -82,12 +82,10 @@ class _HomePageState extends State<HomePage> {
 }
 
 class MyCustomTextField extends StatelessWidget {
-  // final void Function(String)? onChanged;
   final TextEditingController controller;
 
   const MyCustomTextField({
     super.key,
-    // this.onChanged,
     required this.controller,
   });
 
@@ -95,7 +93,6 @@ class MyCustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      // onChanged: onChanged,
     );
   }
 }
