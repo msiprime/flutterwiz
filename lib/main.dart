@@ -37,17 +37,28 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String valueToStore = '';
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
         title: const Text('Test Ground Main'),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           children: [
             SizedBox(height: 20),
             GoTo(page: CounterView(), pageName: 'Counter'),
             GoTo(page: BlocTestingPage(), pageName: 'Bloc Testing'),
+            TextField(
+              onChanged: (valueInsideTextField) {
+                valueToStore = valueInsideTextField;
+              },
+            ),
+            FilledButton(
+                onPressed: () {
+                  print(valueToStore);
+                },
+                child: const Text('Print Textfield value'))
           ],
         ),
       ),
