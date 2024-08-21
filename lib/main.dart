@@ -67,16 +67,13 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(height: 20),
-            GoTo(page: CounterView(), pageName: 'Counter'),
-            GoTo(page: BlocTestingPage(), pageName: 'Bloc Testing'),
+            const SizedBox(height: 20),
+            const GoTo(page: CounterView(), pageName: 'Counter'),
+            const GoTo(page: BlocTestingPage(), pageName: 'Bloc Testing'),
             MyCustomTextField(controller: variableOne),
             MyCustomTextField(controller: variableTwo),
             FilledButton(
-                onPressed: () {
-                  print(' ${variableOne.text} ${variableTwo.text}');
-                },
-                child: const Text('Print Textfield value'))
+                onPressed: () {}, child: const Text('Print Textfield value'))
           ],
         ),
       ),
