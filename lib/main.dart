@@ -32,12 +32,33 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
   @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  late final TextEditingController variableOne;
+  late final TextEditingController variableTwo;
+
+  @override
+  void initState() {
+    variableOne = TextEditingController();
+    variableTwo = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    variableTwo.dispose();
+    variableOne.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    String valueToStore = '';
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -49,19 +70,35 @@ class HomePage extends StatelessWidget {
             SizedBox(height: 20),
             GoTo(page: CounterView(), pageName: 'Counter'),
             GoTo(page: BlocTestingPage(), pageName: 'Bloc Testing'),
-            TextField(
-              onChanged: (valueInsideTextField) {
-                valueToStore = valueInsideTextField;
-              },
-            ),
+            MyCustomTextField(controller: variableOne),
+            MyCustomTextField(controller: variableTwo),
             FilledButton(
                 onPressed: () {
-                  print(valueToStore);
+                  print(' ${variableOne.text} ${variableTwo.text}');
                 },
                 child: const Text('Print Textfield value'))
           ],
         ),
       ),
+    );
+  }
+}
+
+class MyCustomTextField extends StatelessWidget {
+  // final void Function(String)? onChanged;
+  final TextEditingController controller;
+
+  const MyCustomTextField({
+    super.key,
+    // this.onChanged,
+    required this.controller,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      // onChanged: onChanged,
     );
   }
 }
