@@ -11,7 +11,7 @@ class BlocTestingPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Bloc Testing'),
       ),
-      body: BlocBuilder<TestBloc, TestState>(
+      body: BlocBuilder<TestBloc, int>(
         builder: (context, state) {
           return Center(
             child: Column(
@@ -20,11 +20,10 @@ class BlocTestingPage extends StatelessWidget {
                 Text(
                   'You have pushed the button this many times:',
                 ),
-                if (state is TestIncrement)
-                  Text(
-                    '${state.counter}',
-                    style: Theme.of(context).textTheme.titleMedium,
-                  ),
+                Text(
+                  '${state}',
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
               ],
             ),
           );
