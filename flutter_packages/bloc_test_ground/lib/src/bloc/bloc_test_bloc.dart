@@ -6,8 +6,10 @@ part 'bloc_test_state.dart';
 
 class TestBloc extends Bloc<TestEvent, TestState> {
   TestBloc() : super(TestInitial()) {
-    on<TestEvent>((event, emit) {
-      // TODO: implement event handler
-    });
+    on<Increment>(_onIncrement);
+  }
+
+  void _onIncrement(Increment event, Emitter<TestState> emit) {
+    emit(TestIncrement(event.counter + 1));
   }
 }

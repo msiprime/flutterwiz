@@ -20,10 +20,11 @@ class BlocTestingPage extends StatelessWidget {
                 Text(
                   'You have pushed the button this many times:',
                 ),
-                Text(
-                  '${'state.counter'}',
-                  style: Theme.of(context).textTheme.titleMedium,
-                ),
+                if (state is TestIncrement)
+                  Text(
+                    '${state.counter}',
+                    style: Theme.of(context).textTheme.titleMedium,
+                  ),
               ],
             ),
           );
@@ -31,7 +32,9 @@ class BlocTestingPage extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          // context.read<TestBloc>().add(TestEvent.increment);
+          context.read<TestBloc>().add(const Increment(
+                counter: 5,
+              ));
         },
         tooltip: 'Increment',
         child: Icon(Icons.add),
