@@ -18,7 +18,7 @@ class BlocTestingPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  'You have pushed the button this many times:',
+                  'You have pushed this button this many times:',
                 ),
                 Text(
                   '${state}',
