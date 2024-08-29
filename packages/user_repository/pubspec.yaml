@@ -1,0 +1,26 @@
+name: user_repository
+description: "This repository is responsible for user authentication and user data management."
+publish_to: 'none'
+
+
+version: 0.1.0
+
+environment:
+  sdk: '>=3.3.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_bloc: ^8.1.6
+
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

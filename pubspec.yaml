@@ -14,11 +14,17 @@ dependencies:
   cupertino_icons: ^1.0.8
   flutter_bloc: ^8.1.6
   cli_completion: ^0.5.1
+  equatable: ^2.0.5
+
+  # Custom Dependency
+  user_repository:
+    path: packages/user_repository
+
   cubit_test_ground:
     path: flutter_packages/cubit_test_ground
   bloc_test_ground:
     path: flutter_packages/bloc_test_ground
-  equatable: ^2.0.5
+
 
 
 

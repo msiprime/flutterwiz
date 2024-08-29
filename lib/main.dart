@@ -3,6 +3,7 @@ import 'package:cubit_test_ground/cubit_test_ground.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
+import 'package:user_repository/user_repository.dart';
 
 void main() => runApp(const MyApp());
 
@@ -11,22 +12,29 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
+    return MultiRepositoryProvider(
       providers: [
-        BlocProvider<CounterCubit>(
-          create: (context) => CounterCubit(),
-        ),
-        BlocProvider<TestBloc>(
-          create: (context) => TestBloc(),
+        RepositoryProvider<UserRepository>(
+          create: (context) => FirebaseUserRepo(),
         ),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        debugShowMaterialGrid: false,
-        theme: ThemeData.dark(),
-        darkTheme: ThemeData.dark(),
-        themeMode: ThemeMode.dark,
-        home: const HomePage(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<CounterCubit>(
+            create: (context) => CounterCubit(),
+          ),
+          BlocProvider<TestBloc>(
+            create: (context) => TestBloc(),
+          ),
+        ],
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          debugShowMaterialGrid: false,
+          theme: ThemeData.dark(),
+          darkTheme: ThemeData.dark(),
+          themeMode: ThemeMode.dark,
+          home: const HomePage(),
+        ),
       ),
     );
   }
@@ -42,14 +50,12 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         title: const Text('Test Ground Main'),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           children: [
-            const SizedBox(height: 20),
-            const GoTo(page: CounterView(), pageName: 'Counter'),
-            const GoTo(page: BlocTestingPage(), pageName: 'Bloc Testing'),
-            FilledButton(
-                onPressed: () {}, child: const Text('Print Textfield value'))
+            SizedBox(height: 20),
+            GoTo(page: CounterView(), pageName: 'Counter'),
+            GoTo(page: BlocTestingPage(), pageName: 'Bloc Testing'),
           ],
         ),
       ),
