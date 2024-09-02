@@ -1,4 +1,3 @@
-import 'package:bloc_test_ground/bloc_test_ground.dart';
 import 'package:cubit_test_ground/cubit_test_ground.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -22,9 +21,6 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<CounterCubit>(
             create: (context) => CounterCubit(),
-          ),
-          BlocProvider<TestBloc>(
-            create: (context) => TestBloc(),
           ),
         ],
         child: MaterialApp(
@@ -55,7 +51,6 @@ class HomePage extends StatelessWidget {
           children: [
             SizedBox(height: 20),
             GoTo(page: CounterView(), pageName: 'Counter'),
-            GoTo(page: BlocTestingPage(), pageName: 'Bloc Testing'),
           ],
         ),
       ),
