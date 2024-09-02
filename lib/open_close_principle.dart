@@ -17,6 +17,17 @@ class Rectangle implements Shape {
   }
 }
 
+class Circle implements Shape {
+  final double radius;
+
+  Circle({required this.radius});
+
+  @override
+  double calculateArea() {
+    return 3.14 * radius * radius;
+  }
+}
+
 class AreaCalculator {
   double calculateArea(Shape shape) {
     return shape.calculateArea();
@@ -30,6 +41,9 @@ main() {
   final myResult = AreaCalculator().calculateArea(
     Rectangle(height: height, width: width),
   );
+  final myResult2 = AreaCalculator().calculateArea(
+    Circle(radius: height),
+  );
 
-  print(myResult);
+  print('$myResult2 $myResult');
 }
