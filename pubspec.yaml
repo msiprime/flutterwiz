@@ -22,10 +22,9 @@ dependencies:
 
   cubit_test_ground:
     path: flutter_packages/cubit_test_ground
-  bloc_test_ground:
-    path: flutter_packages/bloc_test_ground
-
-
+  get_it: ^7.7.0
+  gap: ^3.0.1
+  fpdart: ^1.1.0
 
 
 dev_dependencies:
