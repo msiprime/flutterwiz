@@ -22,7 +22,6 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
   FutureOr<void> _onSearchTextChanged(
       SearchTextChanged event, Emitter<SearchState> emit) async {
     emit(SearchLoading());
-
     if (event.query.isEmpty) {
       // Fetch popular products
       final result = await productUseCase.fetchPopularProducts();

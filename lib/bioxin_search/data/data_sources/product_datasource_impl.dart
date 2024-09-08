@@ -7,7 +7,7 @@ import 'package:fpdart/fpdart.dart';
 
 class ProductDataSourceImpl implements ProductDataSource {
   ProductDataSourceImpl();
-
+//testing the fuck
   @override
   Future<Either<Failure, List<ProductModel>>> getProducts() async {
     try {
@@ -36,7 +36,7 @@ const jsonResponse = '''
     "popular_products": [
         {
             "id": 1,
-            "productCoverImage": "https://picsum.photos/id/51/300",
+            "productCoverImage": "https://thumbs.dreamstime.com/z/beauty-care-product-blank-space-label-logo-mock-up-cosmetic-bottle-pump-filled-green-color-face-cleanser-330004915.jpg?ct=jpeg",
             "productName": "Radiant Glow Serum",
             "brand": "GlowCo",
             "price": 29.99,
@@ -45,7 +45,7 @@ const jsonResponse = '''
         },
         {
             "id": 2,
-            "productCoverImage": "https://picsum.photos/id/52/300",
+            "productCoverImage": "https://thumbs.dreamstime.com/b/dummy-bottle-photo-cleanser-face-wash-beauty-care-product-label-written-mock-up-cosmetic-white-background-330004920.jpg",
             "productName": "Velvet Matte Lipstick",
             "brand": "LuxeBeauty",
             "price": 19.99,
@@ -54,7 +54,7 @@ const jsonResponse = '''
         },
         {
             "id": 3,
-            "productCoverImage": "https://picsum.photos/id/53/300",
+            "productCoverImage": "https://c8.alamy.com/comp/C1J867/golden-make-up-tube-ideal-cosmetic-concept-or-dummy-product-C1J867.jpg",
             "productName": "Hydrating Facial Cleanser",
             "brand": "PureSkin",
             "price": 24.99,
@@ -63,7 +63,7 @@ const jsonResponse = '''
         },
         {
             "id": 4,
-            "productCoverImage": "https://picsum.photos/id/10/300",
+            "productCoverImage": "https://img.freepik.com/free-psd/cosmetic-elements-white-background-mock-up-design_1135-79.jpg?w=1480&t=st=1725728569~exp=1725729169~hmac=c25329e2563af9cff8b752892f376967d5aa83eccb1fea2681685050fe4f541c",
             "productName": "Ultra Repair Cream",
             "brand": "SkinFix",
             "price": 34.99,
@@ -72,7 +72,7 @@ const jsonResponse = '''
         },
         {
             "id": 5,
-            "productCoverImage": "https://picsum.photos/id/11/300",
+            "productCoverImage": "https://c8.alamy.com/comp/C1J867/golden-make-up-tube-ideal-cosmetic-concept-or-dummy-product-C1J867.jpg",
             "productName": "Luminous Foundation",
             "brand": "GlamUp",
             "price": 39.99,
@@ -81,7 +81,7 @@ const jsonResponse = '''
         },
         {
             "id": 6,
-            "productCoverImage": "https://picsum.photos/id/12/300",
+            "productCoverImage": "https://img.freepik.com/free-psd/cosmetic-elements-white-background-mock-up-design_1135-79.jpg?w=1480&t=st=1725728569~exp=1725729169~hmac=c25329e2563af9cff8b752892f376967d5aa83eccb1fea2681685050fe4f541c",
             "productName": "Volumizing Mascara",
             "brand": "LashLift",
             "price": 22.99,

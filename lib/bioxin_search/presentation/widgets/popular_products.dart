@@ -58,6 +58,7 @@ class _PopularProductsState extends State<PopularProducts> {
                               product.productCoverImage ?? '',
                               width: 82,
                               height: 82,
+                              scale: 0.5,
                               fit: BoxFit.cover,
                             ),
                             const SizedBox(

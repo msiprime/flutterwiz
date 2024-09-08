@@ -11,11 +11,13 @@ class BioxinSearchField extends StatelessWidget {
     this.controller,
     this.onTap,
     this.focusNode,
+    this.onClear,
   });
 
   final TextEditingController? controller;
   final void Function(String)? onChanged;
   final void Function()? onTap;
+  final void Function()? onClear;
   final void Function(String)? onSubmitted;
   final VoidCallback? onFilter;
   final FocusNode? focusNode;
@@ -26,6 +28,17 @@ class BioxinSearchField extends StatelessWidget {
       children: [
         Expanded(
           child: SearchBar(
+            trailing: [
+              IconButton(
+                visualDensity: VisualDensity.compact,
+                padding: EdgeInsets.zero,
+                icon: Icon(Icons.clear,
+                    size: 22,
+                    color:
+                        focusNode!.hasFocus ? Colors.red : Colors.transparent),
+                onPressed: onClear,
+              ),
+            ],
             focusNode: focusNode,
             textStyle: WidgetStatePropertyAll(Theme.of(context)
                 .textTheme
@@ -67,23 +80,27 @@ class BioxinSearchField extends StatelessWidget {
             ),
           ),
         ),
-        FilledButton(
-          style: ButtonStyle(
-            minimumSize: WidgetStateProperty.all(
-              const Size(56, 56),
-            ),
-            backgroundColor: WidgetStateProperty.all(const Color(0xFF231F20)),
-            shape: WidgetStateProperty.all(
-              const RoundedRectangleBorder(),
-            ),
-          ),
-          onPressed: onFilter,
-          child: CustomPaint(
-            size: const Size(25, 25),
-            painter: BioxinFilterIcon(),
-          ),
-        ),
+        _buildFilterButton(),
       ],
+    );
+  }
+
+  FilledButton _buildFilterButton() {
+    return FilledButton(
+      style: ButtonStyle(
+        minimumSize: WidgetStateProperty.all(
+          const Size(56, 56),
+        ),
+        backgroundColor: WidgetStateProperty.all(const Color(0xFF231F20)),
+        shape: WidgetStateProperty.all(
+          const RoundedRectangleBorder(),
+        ),
+      ),
+      onPressed: onFilter,
+      child: CustomPaint(
+        size: const Size(25, 25),
+        painter: BioxinFilterIcon(),
+      ),
     );
   }
 }

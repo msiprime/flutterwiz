@@ -58,6 +58,11 @@ class _SearchScreenState extends State<SearchScreen> {
                   onSubmitted: (query) {
                     context.read<SearchBloc>().add(SearchSubmitted(query));
                   },
+                  onClear: () {
+                    _searchController.clear();
+                    _searchFocusNode.unfocus();
+                    // context.read<SearchBloc>().add(SearchCleared());
+                  },
                 ),
                 const SizedBox(height: 10),
                 if (_isSearchFocused)
@@ -111,8 +116,9 @@ class _SearchScreenState extends State<SearchScreen> {
                           ),
                         );
                       } else if (state is SearchInitial) {
+                        const PopularProducts();
                         // Show popular products initially
-                        return const PopularProducts();
+                        return const SizedBox.shrink();
                       } else if (state is SearchError) {
                         return const Center(child: Text("No results found."));
                       } else if (state is SearchError) {
@@ -121,6 +127,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       return const PopularProducts(); // Fallback
                     },
                   ),
+                const PopularProducts(),
                 const SizedBox(height: 10),
                 const SizedBox(
                   height: 600,
