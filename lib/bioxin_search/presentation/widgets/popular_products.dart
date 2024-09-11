@@ -49,12 +49,6 @@ class _PopularProductsState extends State<PopularProducts> {
           height: 120,
           margin: const EdgeInsets.only(right: 8.0),
           child: Skeletonizer(
-            containersColor: Colors.red,
-            enabled: true,
-            justifyMultiLineText: true,
-            textBoneBorderRadius:
-                TextBoneBorderRadius(BorderRadius.circular(8)),
-            // enableSwitchAnimation: true,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -69,11 +63,9 @@ class _PopularProductsState extends State<PopularProducts> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                Container(
-                  width: 80,
-                  height: 16,
-                  color: Colors.red,
-                ),
+                const Text(
+                  'data Data Data',
+                )
               ],
             ),
           ),
