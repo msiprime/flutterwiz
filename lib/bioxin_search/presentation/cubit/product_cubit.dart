@@ -9,7 +9,7 @@ class ProductCubit extends Cubit<ProductState> {
 
   void fetchPopularProducts() async {
     emit(state.copyWith(state: ProductScreenState.loading));
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 200));
     try {
       final result = await productUseCase.fetchPopularProducts();
       result.fold(

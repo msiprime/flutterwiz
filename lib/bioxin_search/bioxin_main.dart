@@ -31,7 +31,12 @@ void main() {
           ),
         ),
       ],
-      child: const MaterialApp(home: SearchScreen()),
+      child: MaterialApp(
+        home: const SearchScreen(),
+        theme: ThemeData.light(),
+        darkTheme: ThemeData.dark(),
+        themeMode: ThemeMode.system,
+      ),
     ),
   );
 }

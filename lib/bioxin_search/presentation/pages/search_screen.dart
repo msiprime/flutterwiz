@@ -61,7 +61,6 @@ class _SearchScreenState extends State<SearchScreen> {
                   onClear: () {
                     _searchController.clear();
                     _searchFocusNode.unfocus();
-                    // context.read<SearchBloc>().add(SearchCleared());
                   },
                 ),
                 const SizedBox(height: 10),
