@@ -116,8 +116,6 @@ class _SearchScreenState extends State<SearchScreen> {
                         );
                       } else if (state is SearchInitial) {
                         const PopularProducts();
-                        //best shimmer package is skeletonizer hands down.
-                        // Show popular products initially
                         return const SizedBox.shrink();
                       } else if (state is SearchError) {
                         return const Center(child: Text("No results found."));
