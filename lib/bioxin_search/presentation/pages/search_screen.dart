@@ -6,7 +6,9 @@ import 'package:flutter_exploring/bioxin_search/presentation/widgets/popular_pro
 import 'package:flutter_exploring/bioxin_search/presentation/widgets/recent_search.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({super.key});
+  const SearchScreen({
+    super.key,
+  });
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();

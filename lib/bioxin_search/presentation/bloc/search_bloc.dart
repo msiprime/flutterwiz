@@ -21,12 +21,12 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
 
   FutureOr<void> _onSearchTextChanged(
       SearchTextChanged event, Emitter<SearchState> emit) async {
-    emit(SearchLoading());
+    emit(const SearchLoading());
     if (event.query.isEmpty) {
       // Fetch popular products
       final result = await productUseCase.fetchPopularProducts();
       result.fold(
-        (failure) => emit(SearchError('Failed to load popular products')),
+        (failure) => emit(const SearchError('Failed to load popular products')),
         (products) {
           final items = products
               .map((product) => SearchResultItem(
@@ -40,7 +40,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       // Perform search
       final result = await productUseCase.searchProducts(event.query);
       result.fold(
-        (failure) => emit(SearchError('Failed to load search results')),
+        (failure) => emit(const SearchError('Failed to load search results')),
         (products) {
           final filteredItems = products
               .map((product) => SearchResultItem(
