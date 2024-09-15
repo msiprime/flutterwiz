@@ -1,4 +1,4 @@
-name: cubit_test_ground
+name: hydrated_cubit_testground
 description: A Very Good Project created by Very Good CLI.
 version: 0.1.0+1
 publish_to: none
@@ -10,9 +10,6 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_bloc: ^8.1.6
-  equatable: ^2.0.5
-  skeletonizer: ^1.4.2
 
 dev_dependencies:
   flutter_test:

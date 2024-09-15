@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 abstract interface class Shape {
   double calculateArea();
 }
@@ -45,5 +47,7 @@ main() {
     Circle(radius: height),
   );
 
-  print('$myResult2 $myResult');
+  if (kDebugMode) {
+    print('$myResult2 $myResult');
+  }
 }

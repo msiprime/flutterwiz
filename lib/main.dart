@@ -1,4 +1,3 @@
-import 'package:cubit_test_ground/cubit_test_ground.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
@@ -19,9 +18,9 @@ class MyApp extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
-          BlocProvider<CounterCubit>(
-            create: (context) => CounterCubit(),
-          ),
+          // BlocProvider<NumberBloc>(
+          //   create: (context) => NumberBloc(),
+          // ),
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
@@ -50,7 +49,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 20),
-            GoTo(page: CounterView(), pageName: 'Counter'),
+            GoTo(page: Scaffold(), pageName: 'Counter'),
           ],
         ),
       ),
