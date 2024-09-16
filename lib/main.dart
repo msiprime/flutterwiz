@@ -1,9 +1,24 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
+import 'package:gap/gap.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:hydrated_bloc_testground/hydrated_bloc_testground.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:user_repository/user_repository.dart';
 
-void main() => runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  HydratedBloc.storage = await HydratedStorage.build(
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getApplicationDocumentsDirectory(),
+  );
+  runApp(
+    const MyApp(),
+  );
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,17 +33,28 @@ class MyApp extends StatelessWidget {
       ],
       child: MultiBlocProvider(
         providers: [
-          // BlocProvider<NumberBloc>(
-          //   create: (context) => NumberBloc(),
-          // ),
+          BlocProvider<HydratedThemeBloc>(
+            create: (context) => HydratedThemeBloc(),
+          ),
         ],
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          debugShowMaterialGrid: false,
-          theme: ThemeData.dark(),
-          darkTheme: ThemeData.dark(),
-          themeMode: ThemeMode.dark,
-          home: const HomePage(),
+        child: BlocBuilder<HydratedThemeBloc, HydratedThemeState>(
+          builder: (context, state) => (state is ThemeChanged)
+              ? MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  debugShowMaterialGrid: false,
+                  theme: state.themeData,
+                  darkTheme: state.themeData,
+                  themeMode: ThemeMode.system,
+                  home: const HomePage(),
+                )
+              : MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  debugShowMaterialGrid: false,
+                  theme: ThemeData.light(),
+                  darkTheme: ThemeData.dark(),
+                  themeMode: ThemeMode.light,
+                  home: const HomePage(),
+                ),
         ),
       ),
     );
@@ -48,8 +74,11 @@ class HomePage extends StatelessWidget {
       body: const Center(
         child: Column(
           children: [
+            CircularProgressIndicator(),
             SizedBox(height: 20),
             GoTo(page: Scaffold(), pageName: 'Counter'),
+            Gap(8),
+            GoTo(page: HydratedThemePage(), pageName: 'Hydrated Theme'),
           ],
         ),
       ),

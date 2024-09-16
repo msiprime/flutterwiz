@@ -16,9 +16,11 @@ class GoTo extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: 20),
       child: FilledButton(
           style: ButtonStyle(
-            shape: WidgetStateProperty.all(RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            )),
+            shape: WidgetStateProperty.all(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+            ),
             textStyle: WidgetStateProperty.all(const TextStyle(fontSize: 19)),
             backgroundColor: WidgetStateProperty.all(Colors.grey),
             foregroundColor: WidgetStateProperty.all(Colors.black),
