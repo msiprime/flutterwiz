@@ -79,6 +79,7 @@ class HomePage extends StatelessWidget {
             GoTo(page: Scaffold(), pageName: 'Counter'),
             Gap(8),
             GoTo(page: HydratedThemePage(), pageName: 'Hydrated Theme'),
+            Gap(8),
           ],
         ),
       ),
