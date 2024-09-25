@@ -4,6 +4,5 @@ import 'package:fpdart/fpdart.dart';
 
 abstract interface class ProductDataSource {
   Future<Either<Failure, List<ProductModel>>> getProducts();
-//  Future<Either<Failure, List<ProductModel>>> getProducts();`
   Future<Either<Failure, List<ProductModel>>> getPopularProducts();
 }
