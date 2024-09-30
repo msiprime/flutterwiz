@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_exploring/enum_testing.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
 import 'package:gap/gap.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
@@ -72,15 +73,15 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         title: const Text('Test Ground Main'),
       ),
-      body: const Center(
+      body: Center(
         child: Column(
           children: [
-            CircularProgressIndicator(),
-            SizedBox(height: 20),
-            GoTo(page: Scaffold(), pageName: 'Counter'),
-            Gap(8),
-            GoTo(page: HydratedThemePage(), pageName: 'Hydrated Theme'),
-            Gap(8),
+            const SizedBox(height: 20),
+            const GoTo(page: Scaffold(), pageName: 'Counter'),
+            const Gap(8),
+            const GoTo(page: HydratedThemePage(), pageName: 'Hydrated Theme'),
+            const Gap(8),
+            GoTo(page: StatusWidget(), pageName: 'Status Widget'),
           ],
         ),
       ),
