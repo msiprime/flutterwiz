@@ -32,7 +32,6 @@ class StatusWidgetState extends State<StatusWidget> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // UI based on the current status
             Icon(
               _currentStatus.icon,
               size: 100,
