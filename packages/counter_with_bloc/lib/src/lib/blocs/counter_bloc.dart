@@ -7,6 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc() : super(CounterStateSuccess(0)) {
+    // naming convention must remember.
     on<CounterIncremented>(_onCounterIncremented, transformer: sequential());
   }
 
