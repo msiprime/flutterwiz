@@ -9,6 +9,11 @@ class CounterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    context.read<CounterBloc>().stream.listen((state) {
+      if (state is CounterStateSuccess) {
+        print('Counter value: ${(state).count}');
+      }
+    });
     final counterValue =
         context.watch<CounterBloc>().state as CounterStateSuccess;
     return Scaffold(
@@ -31,6 +36,18 @@ class CounterScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          context.read<CounterBloc>().add(CounterIncremented());
+          // await Future.delayed(const Duration(milliseconds: 0));
+
+          context.read<CounterBloc>().add(CounterIncremented());
+          // await Future.delayed(const Duration(milliseconds: 0));
+
+          context.read<CounterBloc>().add(CounterIncremented());
+          // await Future.delayed(const Duration(milliseconds: 0));
+
+          context.read<CounterBloc>().add(CounterIncremented());
+          // await Future.delayed(const Duration(milliseconds: 0));
+
           context.read<CounterBloc>().add(CounterIncremented());
         },
         tooltip: 'Increment',
