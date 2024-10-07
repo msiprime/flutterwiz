@@ -23,6 +23,8 @@ dependencies:
     path: packages/user_repository
   hydrated_bloc_testground:
     path: packages/hydrated_bloc_testground
+  counter_with_bloc:
+    path: packages/counter_with_bloc
 
   get_it: ^7.7.0
   gap: ^3.0.1

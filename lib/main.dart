@@ -1,3 +1,4 @@
+import 'package:counter_with_bloc/counter_with_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,6 +39,9 @@ class MyApp extends StatelessWidget {
           BlocProvider<HydratedThemeBloc>(
             create: (context) => HydratedThemeBloc(),
           ),
+          BlocProvider<CounterBloc>(
+            create: (context) => CounterBloc(),
+          ),
         ],
         child: BlocBuilder<HydratedThemeBloc, HydratedThemeState>(
           builder: (context, state) => (state is ThemeChanged)
@@ -73,15 +77,17 @@ class HomePage extends StatelessWidget {
         centerTitle: true,
         title: const Text('Test Ground Main'),
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           children: [
-            const SizedBox(height: 20),
-            const GoTo(page: Scaffold(), pageName: 'Counter'),
-            const Gap(8),
-            const GoTo(page: HydratedThemePage(), pageName: 'Hydrated Theme'),
-            const Gap(8),
+            SizedBox(height: 20),
+            GoTo(page: Scaffold(), pageName: 'Counter'),
+            Gap(8),
+            GoTo(page: HydratedThemePage(), pageName: 'Hydrated Theme'),
+            Gap(8),
             GoTo(page: StatusWidget(), pageName: 'Status Widget'),
+            Gap(8),
+            GoTo(page: CounterScreen(), pageName: 'Bloc Test Ground'),
           ],
         ),
       ),
