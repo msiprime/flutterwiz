@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class CustomDropdown extends StatefulWidget {
+class UrgentChipDropdown extends StatefulWidget {
   final List<String> items;
   final String title;
 
-  const CustomDropdown({
+  const UrgentChipDropdown({
     super.key,
     required this.items,
     this.title = 'Select Item',
   });
 
   @override
-  CustomDropdownState createState() => CustomDropdownState();
+  UrgentChipDropdownState createState() => UrgentChipDropdownState();
 }
 
-class CustomDropdownState extends State<CustomDropdown> {
+class UrgentChipDropdownState extends State<UrgentChipDropdown> {
   final ValueNotifier<String?> _selectedItemNotifier =
       ValueNotifier<String?>(null);
 
@@ -22,7 +22,7 @@ class CustomDropdownState extends State<CustomDropdown> {
     showModalBottomSheet(
       context: context,
       shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
+        borderRadius: BorderRadius.vertical(top: Radius.circular(8.0)),
       ),
       builder: (_) {
         return _BottomSheetContent(
@@ -36,24 +36,24 @@ class CustomDropdownState extends State<CustomDropdown> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => _showBottomSheet(context),
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          border: Border.all(color: Colors.grey.shade400),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: ValueListenableBuilder<String?>(
-          valueListenable: _selectedItemNotifier,
-          builder: (context, selectedItem, _) {
-            return Text(
-              selectedItem ?? widget.title,
-              style: TextStyle(fontSize: 16, color: Colors.black87),
-            );
-          },
-        ),
-      ),
+    return ValueListenableBuilder(
+      valueListenable: _selectedItemNotifier,
+      builder: (context, selectedItem, _) {
+        final selected = selectedItem != null;
+        return ActionChip(
+          onPressed: () => _showBottomSheet(context),
+          side: BorderSide(
+            color: selected ? Colors.transparent : Colors.grey.shade300,
+            width: 1.0,
+          ),
+          label: Text(selectedItem ?? widget.title),
+          backgroundColor:
+              selected ? Colors.blue.withOpacity(0.3) : Colors.grey.shade200,
+          labelStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
+                color: selected ? Colors.black87 : Colors.grey.shade700,
+              ),
+        );
+      },
     );
   }
 
@@ -80,7 +80,7 @@ class _BottomSheetContent extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,13 +91,13 @@ class _BottomSheetContent extends StatelessWidget {
               style: Theme.of(context).textTheme.titleSmall,
             ),
             Divider(
-              height: 12,
+              height: 14,
               thickness: 2,
               color: Colors.grey.shade300,
             ),
             Wrap(
-              spacing: 8.0,
-              runSpacing: 8.0,
+              spacing: 6.0,
+              runSpacing: 0.0,
               children: items.map((item) {
                 return ValueListenableBuilder<String?>(
                   valueListenable: selectedItemNotifier,
@@ -158,7 +158,7 @@ class DropdownExample extends StatelessWidget {
       appBar: AppBar(title: const Text('Custom Dropdown Example')),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
-        child: CustomDropdown(
+        child: UrgentChipDropdown(
           items: [
             'Apartment',
             'Villa',
@@ -168,7 +168,11 @@ class DropdownExample extends StatelessWidget {
             'Duplex',
             'Penthouse',
             'Studio',
-            'Townhouse'
+            'Townhouse',
+            'Farm',
+            'Rest House',
+            'Compound',
+            'Duplex',
           ],
           title: 'Select Options',
         ),
