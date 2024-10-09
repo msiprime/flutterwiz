@@ -5,29 +5,30 @@ class CustomDropdown extends StatefulWidget {
   final String title;
 
   const CustomDropdown({
-    Key? key,
+    super.key,
     required this.items,
-    this.title = 'Select Items',
-  }) : super(key: key);
+    this.title = 'Select Item',
+  });
 
   @override
-  _CustomDropdownState createState() => _CustomDropdownState();
+  CustomDropdownState createState() => CustomDropdownState();
 }
 
-class _CustomDropdownState extends State<CustomDropdown> {
-  final ValueNotifier<List<String>> _selectedItemsNotifier =
-      ValueNotifier<List<String>>([]);
+class CustomDropdownState extends State<CustomDropdown> {
+  final ValueNotifier<String?> _selectedItemNotifier =
+      ValueNotifier<String?>(null);
 
   void _showBottomSheet(BuildContext context) {
     showModalBottomSheet(
       context: context,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
       ),
       builder: (_) {
         return _BottomSheetContent(
           items: widget.items,
-          selectedItemsNotifier: _selectedItemsNotifier,
+          title: widget.title,
+          selectedItemNotifier: _selectedItemNotifier,
         );
       },
     );
@@ -38,16 +39,16 @@ class _CustomDropdownState extends State<CustomDropdown> {
     return GestureDetector(
       onTap: () => _showBottomSheet(context),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
           border: Border.all(color: Colors.grey.shade400),
           borderRadius: BorderRadius.circular(8),
         ),
-        child: ValueListenableBuilder<List<String>>(
-          valueListenable: _selectedItemsNotifier,
-          builder: (context, selectedItems, _) {
+        child: ValueListenableBuilder<String?>(
+          valueListenable: _selectedItemNotifier,
+          builder: (context, selectedItem, _) {
             return Text(
-              selectedItems.isEmpty ? widget.title : selectedItems.join(', '),
+              selectedItem ?? widget.title,
               style: TextStyle(fontSize: 16, color: Colors.black87),
             );
           },
@@ -58,81 +59,117 @@ class _CustomDropdownState extends State<CustomDropdown> {
 
   @override
   void dispose() {
-    _selectedItemsNotifier.dispose();
+    _selectedItemNotifier.dispose();
     super.dispose();
   }
 }
 
 class _BottomSheetContent extends StatelessWidget {
   final List<String> items;
-  final ValueNotifier<List<String>> selectedItemsNotifier;
+  final String title;
+  final ValueNotifier<String?> selectedItemNotifier;
 
   const _BottomSheetContent({
-    Key? key,
+    required this.title,
     required this.items,
-    required this.selectedItemsNotifier,
-  }) : super(key: key);
+    required this.selectedItemNotifier,
+  });
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Wrap(
-            spacing: 8.0,
-            runSpacing: 8.0,
-            children: items.map((item) {
-              return ValueListenableBuilder<List<String>>(
-                valueListenable: selectedItemsNotifier,
-                builder: (context, selectedItems, _) {
-                  final isSelected = selectedItems.contains(item);
-                  return ChoiceChip(
-                    label: Text(item),
-                    selected: isSelected,
-                    onSelected: (_) {
-                      if (isSelected) {
-                        selectedItemsNotifier.value = List.from(selectedItems)
-                          ..remove(item);
-                      } else {
-                        selectedItemsNotifier.value = List.from(selectedItems)
-                          ..add(item);
-                      }
-                    },
-                    selectedColor: Colors.blue.shade200,
-                    backgroundColor: Colors.grey.shade200,
-                  );
-                },
-              );
-            }).toList(),
-          ),
-          SizedBox(height: 16.0),
-          ElevatedButton(
-            onPressed: () {
-              selectedItemsNotifier.value = [];
-            },
-            child: Text('Clear Selection'),
-          ),
-        ],
+    return SizedBox(
+      width: double.infinity,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(
+              title,
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
+            Divider(
+              height: 12,
+              thickness: 2,
+              color: Colors.grey.shade300,
+            ),
+            Wrap(
+              spacing: 8.0,
+              runSpacing: 8.0,
+              children: items.map((item) {
+                return ValueListenableBuilder<String?>(
+                  valueListenable: selectedItemNotifier,
+                  builder: (context, selectedItem, _) {
+                    final isSelected = selectedItem == item;
+                    return ChoiceChip(
+                      showCheckmark: false,
+                      visualDensity: VisualDensity.compact,
+                      side: BorderSide(
+                        color: isSelected
+                            ? Colors.transparent
+                            : Colors.grey.shade300,
+                        width: 1.0,
+                      ),
+                      padding: EdgeInsets.zero,
+                      label: Text(item),
+                      labelStyle:
+                          Theme.of(context).textTheme.labelMedium?.copyWith(
+                                color: isSelected
+                                    ? Colors.black87
+                                    : Colors.grey.shade700,
+                              ),
+                      selected: isSelected,
+                      onSelected: (_) {
+                        selectedItemNotifier.value = isSelected ? null : item;
+                      },
+                      selectedColor: Colors.blue.withOpacity(0.25),
+                      backgroundColor: Colors.grey.shade50,
+                    );
+                  },
+                );
+              }).toList(),
+            ),
+            const SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                selectedItemNotifier.value = null;
+              },
+              child: const Text('Clear'),
+            ),
+          ],
+        ),
       ),
     );
   }
 }
 
 void main() {
-  runApp(MaterialApp(home: DropdownExample()));
+  runApp(const MaterialApp(home: DropdownExample()));
 }
 
 class DropdownExample extends StatelessWidget {
+  const DropdownExample({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Custom Dropdown Example')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      appBar: AppBar(title: const Text('Custom Dropdown Example')),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: CustomDropdown(
-          items: ['Option 1', 'Option 2', 'Option 3', 'Option 4'],
+          items: [
+            'Apartment',
+            'Villa',
+            'Farm',
+            'Rest House',
+            'Compound',
+            'Duplex',
+            'Penthouse',
+            'Studio',
+            'Townhouse'
+          ],
           title: 'Select Options',
         ),
       ),
