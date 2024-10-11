@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 enum AppStatus {
   loading('Loading...', Icons.hourglass_empty, Colors.blue),
-  success('Success!', Icons.check_circle, Colors.green),
+  success('Success!', Icons.check_circle_sharp, Colors.green),
   error('Error occurred!', Icons.error_outline, Colors.red);
 
   final String description;
