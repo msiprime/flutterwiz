@@ -43,8 +43,6 @@ class StatusWidgetState extends State<StatusWidget> {
               style: TextStyle(fontSize: 24, color: _currentStatus.statusColor),
             ),
             const SizedBox(height: 40),
-
-            // Dropdown to switch between different statuses
             DropdownButton<AppStatus>(
               value: _currentStatus,
               items: AppStatus.values.map((status) {

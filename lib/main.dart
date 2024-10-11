@@ -4,14 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exploring/enum_testing.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:gap/gap.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:hydrated_bloc_testground/hydrated_bloc_testground.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:user_repository/user_repository.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = MyBlocObserver();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
@@ -39,8 +42,8 @@ class MyApp extends StatelessWidget {
           BlocProvider<HydratedThemeBloc>(
             create: (context) => HydratedThemeBloc(),
           ),
-          BlocProvider<CounterBloc>(
-            create: (context) => CounterBloc(),
+          BlocProvider<TypingBloc>(
+            create: (context) => TypingBloc(),
           ),
         ],
         child: BlocBuilder<HydratedThemeBloc, HydratedThemeState>(
@@ -87,8 +90,52 @@ class HomePage extends StatelessWidget {
             Gap(8),
             GoTo(page: StatusWidget(), pageName: 'Status Widget'),
             Gap(8),
-            GoTo(page: CounterScreen(), pageName: 'Bloc Test Ground'),
+            GoTo(page: TypingScreen(), pageName: 'Typing Test Ground'),
+            Gap(8),
+            GoTo(page: RxDartLearningScreen(), pageName: 'RxDart Test Ground'),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+class RxDartLearningScreen extends HookWidget {
+  const RxDartLearningScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final subject = useMemoized(() => BehaviorSubject<String>(), [key]);
+    useEffect(() => subject.close, [subject]);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: StreamBuilder(
+            initialData: 'Please start typing...',
+            stream: subject.stream
+                .distinct()
+                .debounceTime(const Duration(seconds: 1)),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Text(snapshot.data.toString());
+              } else if (snapshot.hasError) {
+                return Text(snapshot.error.toString());
+              } else if (snapshot.connectionState == ConnectionState.waiting) {
+                return Text('Loading');
+              } else if (snapshot.connectionState == ConnectionState.done) {
+                return Text('Done');
+              } else {
+                return Text('Empty');
+              }
+            }),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: TextField(
+          decoration: const InputDecoration(border: OutlineInputBorder()),
+          onChanged: (value) {
+            subject.sink.add(value);
+          },
         ),
       ),
     );
