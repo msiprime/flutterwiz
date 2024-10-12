@@ -1,25 +1,27 @@
 import 'dart:async';
 
-import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rxdart/rxdart.dart';
 
 part 'typingbloc_event.dart';
 part 'typingbloc_state.dart';
 
 class TypingBloc extends Bloc<TypingblocEvent, TypingblocState> {
   TypingBloc() : super(TypingblocInitial()) {
-    on<OnTypeEvent>(
-      _onTypeEvent,
-      transformer: restartable(),
-    );
+    on<OnTypeEvent>(_onTypeEvent,
+        transformer: restartableDebounce(Duration(milliseconds: 300)));
   }
 
-  Future<void> _onTypeEvent(
-      OnTypeEvent event, Emitter<TypingblocState> emit) async {
-    await Future.delayed(const Duration(milliseconds: 1000), () {
-      emit(TypingblocNameChanged(event.someText));
-    });
+  void _onTypeEvent(OnTypeEvent event, Emitter<TypingblocState> emit) async {
+    await Future.delayed(Duration(seconds: 5));
+    emit(TypingblocNameChanged(event.someText));
+  }
+
+  EventTransformer<T> restartableDebounce<T>(Duration duration) {
+    return (events, mapper) {
+      return events.debounceTime(duration).switchMap(mapper);
+    };
   }
 }
 
@@ -28,23 +30,16 @@ class MyBlocObserver extends BlocObserver {
   void onEvent(Bloc bloc, Object? event) {
     super.onEvent(bloc, event);
     print('...........................................');
-    print('${bloc.runtimeType} $event');
-    print('...............xxxxxxxxxxx............................');
+    print('${bloc.runtimeType} $event ${event}');
+    print(
+        '...............E.V.E.N.T Triggered.........................E.V.E.N.T Triggered.....................');
   }
 
   @override
-  void onChange(BlocBase bloc, Change change) {
-    super.onChange(bloc, change);
+  void onTransition(Bloc bloc, Transition transition) {
+    super.onTransition(bloc, transition);
     print('...........................................');
-    print('${bloc.runtimeType} $change');
-    print('...............xxxxxxxxxxx............................');
-  }
-
-  @override
-  void onError(BlocBase bloc, Object error, StackTrace stackTrace) {
-    super.onError(bloc, error, stackTrace);
-    print('...........................................');
-    print('${bloc.runtimeType} $error');
-    print('...............xxxxxxxxxxx............................');
+    print('${bloc.runtimeType} $transition');
+    print('...........T.R.A.N.S.I.T.I.O.N.............');
   }
 }
