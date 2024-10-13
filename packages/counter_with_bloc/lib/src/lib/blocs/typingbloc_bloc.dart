@@ -32,7 +32,7 @@ class MyBlocObserver extends BlocObserver {
     print('...........................................');
     print('${bloc.runtimeType} $event ${event}');
     print(
-        '...............E.V.E.N.T Triggered.........................E.V.E.N.T Triggered.....................');
+        '...................................................E.V.E.N.T Triggered.....................');
   }
 
   @override
