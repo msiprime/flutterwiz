@@ -121,11 +121,11 @@ class RxDartLearningScreen extends HookWidget {
               } else if (snapshot.hasError) {
                 return Text(snapshot.error.toString());
               } else if (snapshot.connectionState == ConnectionState.waiting) {
-                return Text('Loading');
+                return const Text('Loading');
               } else if (snapshot.connectionState == ConnectionState.done) {
-                return Text('Done');
+                return const Text('Done');
               } else {
-                return Text('Empty');
+                return const Text('Empty');
               }
             }),
       ),
