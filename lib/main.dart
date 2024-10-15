@@ -13,7 +13,6 @@ import 'package:rxdart/rxdart.dart';
 import 'package:user_repository/user_repository.dart';
 
 void main() async {
-  // await Firebase.initializeApp();
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
   HydratedBloc.storage = await HydratedStorage.build(
