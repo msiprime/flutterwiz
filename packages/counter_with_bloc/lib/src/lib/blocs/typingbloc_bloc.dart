@@ -25,6 +25,7 @@ class TypingBloc extends Bloc<TypingblocEvent, TypingblocState> {
   }
 }
 
+// okkh
 class MyBlocObserver extends BlocObserver {
   @override
   void onEvent(Bloc bloc, Object? event) {
