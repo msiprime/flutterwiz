@@ -25,8 +25,6 @@ void main() async {
   );
 }
 
-// oh shit hydrated bloc /// dang
-
 // my app
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
