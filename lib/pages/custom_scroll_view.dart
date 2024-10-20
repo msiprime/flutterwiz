@@ -10,7 +10,7 @@ class CustomScrollViewExample extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            title: Text('SliverAppBar'),
+            title: const Text('SliverAppBar'),
             floating: false,
             flexibleSpace: Container(
               color: Colors.blue,
@@ -20,14 +20,14 @@ class CustomScrollViewExample extends StatelessWidget {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) => ListTile(
-                leading: Icon(Icons.ac_unit),
+                leading: const Icon(Icons.ac_unit),
                 onTap: () => print('Item #$index'),
                 title: Text('Item #$index'),
               ),
               childCount: 20,
             ),
           ),
-          SliverGap(100),
+          const SliverGap(100),
           SliverGrid(
             delegate: SliverChildBuilderDelegate(
               (context, index) => Container(
@@ -38,7 +38,7 @@ class CustomScrollViewExample extends StatelessWidget {
               ),
               childCount: 20,
             ),
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
