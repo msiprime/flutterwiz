@@ -10,7 +10,6 @@ class CustomScrollViewExample extends StatelessWidget {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            // lol
             title: const Text('SliverAppBar'),
             floating: false,
             flexibleSpace: Container(
