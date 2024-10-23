@@ -1,8 +1,8 @@
-import 'package:counter_with_bloc/counter_with_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exploring/enum_testing.dart';
+import 'package:flutter_exploring/features/counter_bloc/pages/counter_bloc_screen.dart';
 import 'package:flutter_exploring/pages/rx_dart_learning.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
 import 'package:gap/gap.dart';
@@ -15,7 +15,6 @@ import 'pages/custom_scroll_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  Bloc.observer = MyBlocObserver();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
@@ -42,9 +41,6 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<HydratedThemeBloc>(
             create: (context) => HydratedThemeBloc(),
-          ),
-          BlocProvider<TypingBloc>(
-            create: (context) => TypingBloc(),
           ),
         ],
         child: BlocBuilder<HydratedThemeBloc, HydratedThemeState>(
@@ -91,13 +87,15 @@ class HomePage extends StatelessWidget {
             Gap(8),
             GoTo(page: StatusWidget(), pageName: 'Status Widget'),
             Gap(8),
-            GoTo(page: TypingScreen(), pageName: 'Typing Test Ground'),
-            Gap(8),
             GoTo(page: RxDartLearningScreen(), pageName: 'RxDart Test Ground'),
             Gap(8),
             GoTo(
                 page: CustomScrollViewExample(),
                 pageName: 'Custom Scroll View Example'),
+            Gap(8),
+            GoTo(
+                page: CounterBlocScreen(),
+                pageName: 'Simple Counter With Bloc'),
           ],
         ),
       ),
