@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_exploring/dependecies/dependecies.dart';
 import 'package:flutter_exploring/enum_testing.dart';
 import 'package:flutter_exploring/features/counter_bloc/pages/counter_bloc_screen.dart';
 import 'package:flutter_exploring/pages/rx_dart_learning.dart';
@@ -15,6 +16,7 @@ import 'pages/custom_scroll_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await setupServiceLocator();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
         ? HydratedStorage.webStorageDirectory
