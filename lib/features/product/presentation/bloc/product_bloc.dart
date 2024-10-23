@@ -2,7 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart' show immutable;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exploring/features/product/domain/entities/product_entity.dart';
-import 'package:flutter_exploring/features/product/domain/use_cases/product_usecase.dart';
+import 'package:flutter_exploring/features/product/domain/use_cases/fetch_popular_product.dart';
+import 'package:flutter_exploring/features/product/domain/use_cases/fetch_product.dart';
 
 part 'product_event.dart';
 part 'product_state.dart';

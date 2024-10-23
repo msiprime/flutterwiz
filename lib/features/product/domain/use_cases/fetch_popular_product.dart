@@ -3,16 +3,6 @@ import 'package:flutter_exploring/features/product/domain/entities/product_entit
 import 'package:flutter_exploring/features/product/domain/repositories/product_repo.dart';
 import 'package:fpdart/fpdart.dart';
 
-class FetchProductUseCase {
-  final ProductRepo _productRepository;
-
-  FetchProductUseCase(this._productRepository);
-
-  Future<Either<Failure, List<ProductEntity>>> fetchProducts() async {
-    return await _productRepository.getProducts();
-  }
-}
-
 class FetchPopularProductUseCase {
   final ProductRepo _productRepository;
 
