@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exploring/dependecies/dependecies.dart';
 import 'package:flutter_exploring/enum_testing.dart';
 import 'package:flutter_exploring/features/counter_bloc/pages/counter_bloc_screen.dart';
+import 'package:flutter_exploring/features/product/presentation/bloc/product_bloc.dart';
 import 'package:flutter_exploring/pages/rx_dart_learning.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
 import 'package:gap/gap.dart';
@@ -43,6 +44,9 @@ class MyApp extends StatelessWidget {
         providers: [
           BlocProvider<HydratedThemeBloc>(
             create: (context) => HydratedThemeBloc(),
+          ),
+          BlocProvider<ProductBloc>(
+            create: (context) => sl.get<ProductBloc>(),
           ),
         ],
         child: BlocBuilder<HydratedThemeBloc, HydratedThemeState>(

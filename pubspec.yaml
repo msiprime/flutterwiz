@@ -34,7 +34,7 @@ dependencies:
   hydrated_bloc: ^9.1.5
   rxdart: ^0.28.0
   flutter_hooks: ^0.20.5
-  bloc_test: ^9.1.7
+
 
 
 dev_dependencies:
@@ -42,6 +42,8 @@ dev_dependencies:
     sdk: flutter
   flutter_lints: ^5.0.0
   melos: ^6.2.0
+  bloc_test: ^9.1.7
+  mocktail: ^1.0.4
 
 flutter:
 

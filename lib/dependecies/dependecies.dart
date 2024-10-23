@@ -3,6 +3,7 @@ import 'package:flutter_exploring/features/product/data/data_sources/product_dat
 import 'package:flutter_exploring/features/product/data/repositories/product_repo_impl.dart';
 import 'package:flutter_exploring/features/product/domain/repositories/product_repo.dart';
 import 'package:flutter_exploring/features/product/domain/use_cases/product_usecase.dart';
+import 'package:flutter_exploring/features/product/presentation/bloc/product_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 final GetIt sl = GetIt.instance;
@@ -15,10 +16,10 @@ Future<void> setupServiceLocator() async {
 }
 
 Future<void> initBloc() async {
-  // sl.registerFactory(() => ProductBloc(
-  //       fetchProductUseCase: sl(),
-  //       fetchPopularProductUseCase: sl(),
-  //     ));
+  sl.registerFactory(() => ProductBloc(
+        fetchProductUseCase: sl(),
+        fetchPopularProductUseCase: sl(),
+      ));
 }
 
 Future<void> initUseCase() async {
@@ -43,5 +44,7 @@ Future<void> initRepository() async {
 }
 
 Future<void> initDataSource() async {
-  sl.registerLazySingleton<ProductDataSource>(() => ProductDataSourceImpl());
+  sl.registerLazySingleton<ProductDataSource>(
+    () => ProductDataSourceImpl(),
+  );
 }
