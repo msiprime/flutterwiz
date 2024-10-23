@@ -65,9 +65,6 @@ void main() {
       },
       act: (bloc) => bloc.add(FetchPopularProductEvent()),
       expect: () => [
-        // isA<ProductLoading>(),
-        // isA<ProductLoaded>()
-        //     .having((state) => state.products, 'products', isNotEmpty),
         ProductLoading(),
         ProductLoaded([ProductEntity(id: 1)]),
       ],
