@@ -4,6 +4,12 @@ import 'package:flutter_test/flutter_test.dart';
 
 main() {
   group('counter bloc', () {
+    // testing initial state
+    test('Initial state should be 0', () {
+      final bloc = CounterBloc();
+      expect(bloc.state, 0);
+    });
+
     blocTest<CounterBloc, int>(
       'initial state',
       build: () => CounterBloc(),
@@ -34,6 +40,16 @@ main() {
         1,
         2,
       ],
+    );
+
+    blocTest<CounterBloc, int>(
+      'seed function testing with counter',
+      build: () => CounterBloc(),
+      seed: () => 5,
+      act: (bloc) {
+        bloc.add(CounterIncremented());
+      },
+      expect: () => <int>[6],
     );
   });
 }
