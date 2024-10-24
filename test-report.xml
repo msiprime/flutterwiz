@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite errors="0" failures="0" tests="2" skipped="0" name=".home.msi.Desktop.flutterwiz.test.features.product.domain.use_cases.fetch_popular_product" timestamp="2024-10-24T05:51:15">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.features.product.domain.use_cases.fetch_popular_product" name="FetchPopularProductUseCase should return a list of ProductEntity when the call to the repository is successful" time="0.069"/>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.features.product.domain.use_cases.fetch_popular_product" name="FetchPopularProductUseCase should return a Failure when the call to the repository fails" time="0.01"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="1" skipped="0" name=".home.msi.Desktop.flutterwiz.test.features.product.domain.use_cases.fetch_product" timestamp="2024-10-24T05:51:15">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.features.product.domain.use_cases.fetch_product" name="should return a list of ProductEntity when the call to the repository is successful" time="0.061"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="4" skipped="0" name=".home.msi.Desktop.flutterwiz.test.Features.product.presentation.bloc.product_bloc" timestamp="2024-10-24T05:51:15">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.Features.product.presentation.bloc.product_bloc" name="ProductBloc emits [ProductLoading, ProductLoaded] when FetchPopularProductEvent is added and fetchPopularProducts succeeds" time="0.106"/>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.Features.product.presentation.bloc.product_bloc" name="ProductBloc emits [ProductLoading, ProductError] when FetchProductEvent is added and fetchProducts fails" time="0.008"/>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.Features.product.presentation.bloc.product_bloc" name="ProductBloc emits [ProductLoading, ProductLoaded] when FetchPopularProductEvent is added and fetchPopularProducts succeeds" time="0.007"/>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.Features.product.presentation.bloc.product_bloc" name="ProductBloc emits [ProductLoading, ProductError] when FetchPopularProductEvent is added and fetchPopularProducts fails" time="0.006"/>
+  </testsuite>
+  <testsuite errors="0" failures="0" tests="5" skipped="0" name=".home.msi.Desktop.flutterwiz.test.Features.counter_bloc.bloc.counter_bloc" timestamp="2024-10-24T05:51:15">
+    <properties>
+      <property name="platform" value="vm"/>
+    </properties>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.Features.counter_bloc.bloc.counter_bloc" name="counter bloc Initial state should be 0" time="0.034"/>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.Features.counter_bloc.bloc.counter_bloc" name="counter bloc initial state" time="0.02"/>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.Features.counter_bloc.bloc.counter_bloc" name="counter bloc After first increment event" time="0.011"/>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.Features.counter_bloc.bloc.counter_bloc" name="counter bloc After second increment event" time="0.005"/>
+    <testcase classname=".home.msi.Desktop.flutterwiz.test.Features.counter_bloc.bloc.counter_bloc" name="counter bloc seed function testing with counter" time="0.006"/>
+  </testsuite>
+</testsuites>

@@ -38,8 +38,10 @@ dependencies:
 
 
 dev_dependencies:
+
   flutter_test:
     sdk: flutter
+  test: ^1.16.0
   flutter_lints: ^5.0.0
   melos: ^6.2.0
   bloc_test: ^9.1.7
