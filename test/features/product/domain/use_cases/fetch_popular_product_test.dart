@@ -16,42 +16,42 @@ void main() {
     useCase = FetchPopularProductUseCase(mockProductRepo);
   });
 
-  test(
-      'should return a list of ProductEntity when the call to the repository is successful',
+  group('FetchPopularProductUseCase', () {
+    test(
+        'should return a list of ProductEntity when the call to the repository is successful',
+        () async {
+      // Arrange
+      final productList = [ProductEntity(id: 1)];
+      when(
+        () => mockProductRepo.getPopularProducts(),
+      ).thenAnswer(
+        (_) async => Right(productList),
+      );
+
+      // Act
+      final result = await useCase.fetchPopularProducts();
+
+      // Assert
+      expect(result, equals(Right(productList)));
+      verify(() => mockProductRepo.getPopularProducts()).called(1);
+      verifyNoMoreInteractions(mockProductRepo);
+    });
+
+    test(
+      'should return a Failure when the call to the repository fails',
       () async {
-    // Arrange
-    final productList = [ProductEntity(id: 1)];
-    when(
-      () => mockProductRepo.getPopularProducts(),
-    ).thenAnswer(
-      (_) async => Right(productList),
+        // Arrange
+        when(() => mockProductRepo.getPopularProducts()).thenAnswer(
+          (_) async => Left(Failure()),
+        );
+        // Act
+        final result = await useCase.fetchPopularProducts();
+
+        // Assert
+        expect(result, equals(Left(Failure())));
+        verify(() => mockProductRepo.getPopularProducts()).called(1);
+        verifyNoMoreInteractions(mockProductRepo);
+      },
     );
-
-    // Act
-    final result = await useCase.fetchPopularProducts();
-
-    // Assert
-    expect(result, equals(Right(productList)));
-    verify(() => mockProductRepo.getPopularProducts()).called(1);
-    verifyNoMoreInteractions(mockProductRepo);
-  });
-
-  test('should return error when the call to the repository is successful',
-      () async {
-    // Arrange
-    final productList = [ProductEntity(id: 1)];
-    when(
-      () => mockProductRepo.getPopularProducts(),
-    ).thenAnswer(
-      (_) async => Left(Failure('Error in mock')),
-    );
-
-    // Act
-    final result = await useCase.fetchPopularProducts();
-
-    // Assert
-    expect(result, equals(Left(Failure('Error in mock'))));
-    verify(() => mockProductRepo.getPopularProducts()).called(1);
-    verifyNoMoreInteractions(mockProductRepo);
   });
 }
