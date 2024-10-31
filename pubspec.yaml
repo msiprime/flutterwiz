@@ -35,6 +35,9 @@ dependencies:
   rxdart: ^0.28.0
   flutter_hooks: ^0.20.5
 
+  dio:
+  dartz:
+
 
 
 dev_dependencies:

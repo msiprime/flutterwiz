@@ -1,7 +1,5 @@
 bricks:
   flutter_bloc_feature: ^0.3.2
-  feature_brick: ^0.6.2
-  service_package: ^0.0.5
   clean_template: ^0.1.7+8
   clean_archy_feature: ^0.1.4+1
   super_feature: ^0.1.0+1

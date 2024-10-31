@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +7,7 @@ import 'package:flutter_exploring/dependecies/dependecies.dart';
 import 'package:flutter_exploring/enum_testing.dart';
 import 'package:flutter_exploring/features/counter_bloc/pages/counter_bloc_screen.dart';
 import 'package:flutter_exploring/features/product/presentation/bloc/product_bloc.dart';
+import 'package:flutter_exploring/features/user/presentation/pages/users_page.dart';
 import 'package:flutter_exploring/pages/rx_dart_learning.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
 import 'package:gap/gap.dart';
@@ -17,6 +20,7 @@ import 'pages/custom_scroll_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  Bloc.observer = const AppBlocObserver();
   await setupServiceLocator();
   HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: kIsWeb
@@ -26,6 +30,28 @@ void main() async {
   runApp(
     const MyApp(),
   );
+}
+
+class AppBlocObserver extends BlocObserver {
+  const AppBlocObserver();
+
+  @override
+  void onChange(BlocBase<dynamic> bloc, Change<dynamic> change) {
+    super.onChange(bloc, change);
+    log('onChange(${bloc.runtimeType}, $change)');
+  }
+
+  @override
+  void onError(BlocBase<dynamic> bloc, Object error, StackTrace stackTrace) {
+    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
+    super.onError(bloc, error, stackTrace);
+  }
+
+  @override
+  void onClose(BlocBase<dynamic> bloc) {
+    log('onClose(${bloc.runtimeType})');
+    super.onClose(bloc);
+  }
 }
 
 // my app
@@ -87,7 +113,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             SizedBox(height: 20),
-            GoTo(page: Scaffold(), pageName: 'Counter'),
+            GoTo(page: UsersPage(), pageName: 'Counter'),
             Gap(8),
             GoTo(page: HydratedThemePage(), pageName: 'Hydrated Theme'),
             Gap(8),
