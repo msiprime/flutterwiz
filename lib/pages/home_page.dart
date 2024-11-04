@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_exploring/features/counter_bloc/pages/counter_bloc_screen.dart';
 import 'package:flutter_exploring/features/user/presentation/pages/users_page.dart';
+import 'package:flutter_exploring/login/login.dart';
 import 'package:flutter_exploring/pages/custom_scroll_view.dart';
-import 'package:flutter_exploring/pages/formz_checking_page.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
 import 'package:gap/gap.dart';
 import 'package:hydrated_bloc_testground/hydrated_bloc_testground.dart';
@@ -33,7 +33,7 @@ class HomePage extends StatelessWidget {
                 page: CounterBlocScreen(),
                 pageName: 'Simple Counter With Bloc'),
             Gap(8),
-            GoTo(page: FormzCheckingPage(), pageName: 'Formz play ground')
+            GoTo(page: LoginPage(), pageName: 'Formz play ground')
           ],
         ),
       ),
