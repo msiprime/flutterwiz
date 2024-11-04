@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hydrated_bloc_testground/hydrated_bloc_testground.dart';
 
+///
 class HydratedThemePage extends StatefulWidget {
+  ///
   const HydratedThemePage({
     super.key,
   });

@@ -7,31 +7,34 @@ import 'package:hydrated_bloc/hydrated_bloc.dart';
 part 'hydrated_theme_event.dart';
 part 'hydrated_theme_state.dart';
 
+///
 class HydratedThemeBloc
     extends HydratedBloc<HydratedThemeEvent, HydratedThemeState> {
-  HydratedThemeBloc() : super(HydratedThemeInitial()) {
-    on<HydratedThemeEvent>(_onHydratedThemeEvent);
+  ///
+  HydratedThemeBloc() : super(const HydratedThemeInitial()) {
     on<DarkThemeSelectedEvent>(_onDarkThemeSelectedEvent);
     on<LightThemeSelectedEvent>(_onLightThemeSelectedEvent);
     on<SystemThemeSelectedEvent>(_onSystemThemeSelectedEvent);
   }
 
-  FutureOr<void> _onHydratedThemeEvent(event, emit) {
-    // TODO: implement event handler
-  }
-
   FutureOr<void> _onDarkThemeSelectedEvent(
-      DarkThemeSelectedEvent event, Emitter<HydratedThemeState> emit) {
+    DarkThemeSelectedEvent event,
+    Emitter<HydratedThemeState> emit,
+  ) {
     emit(ThemeChanged(themeData: ThemeData.dark()));
   }
 
   FutureOr<void> _onLightThemeSelectedEvent(
-      LightThemeSelectedEvent event, Emitter<HydratedThemeState> emit) {
+    LightThemeSelectedEvent event,
+    Emitter<HydratedThemeState> emit,
+  ) {
     emit(ThemeChanged(themeData: ThemeData.light()));
   }
 
   FutureOr<void> _onSystemThemeSelectedEvent(
-      SystemThemeSelectedEvent event, Emitter<HydratedThemeState> emit) {
+    SystemThemeSelectedEvent event,
+    Emitter<HydratedThemeState> emit,
+  ) {
     // Implement system theme logic if needed
   }
 
