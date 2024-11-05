@@ -18,15 +18,21 @@ dependencies:
   equatable: ^2.0.5
   path_provider: ^2.1.4
 
-  # Custom Dependency
-  user_repository:
-    path: packages/user_repository
   hydrated_bloc_testground:
     path: packages/hydrated_bloc_testground
 
-  form_fields:
-    path: packages/form_fields
-
+  storage:
+    path: packages/storage/storage
+  secure_storage:
+    path: packages/storage/secure_storage
+  persistent_storage:
+    path: packages/storage/persistent_storage
+  flutter_secure_storage:
+  form_inputs:
+    path: packages/form_inputs
+  flutter_svg:
+  intl:
+  intl_utils:
   get_it: ^8.0.1
   gap: ^3.0.1
   fpdart: ^1.1.0
