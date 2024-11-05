@@ -24,8 +24,8 @@ dependencies:
   hydrated_bloc_testground:
     path: packages/hydrated_bloc_testground
 
-  form_inputs:
-    path: packages/form_inputs
+  form_fields:
+    path: packages/form_fields
 
   get_it: ^8.0.1
   gap: ^3.0.1

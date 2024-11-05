@@ -378,21 +378,21 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  form_inputs:
+  form_fields:
     dependency: "direct main"
     description:
-      path: "packages/form_inputs"
+      path: "packages/form_fields"
       relative: true
     source: path
-    version: "0.0.0"
+    version: "0.1.0+1"
   formz:
     dependency: transitive
     description:
       name: formz
-      sha256: a58eb48d84685b7ffafac1d143bf47d585bf54c7db89fe81c175dfd6e53201c7
+      sha256: ed92f501f4a44b1da9137a025007df773b3732147b413c464158ecd997612ab6
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.0"
+    version: "0.4.1"
   fpdart:
     dependency: "direct main"
     description:
