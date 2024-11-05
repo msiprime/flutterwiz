@@ -7,7 +7,9 @@ import 'package:flutter_exploring/login/view/signup_page.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:form_inputs/form_inputs.dart';
+import 'package:persistent_storage/persistent_storage.dart';
 import 'package:secure_storage/secure_storage.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../login.dart';
 
@@ -15,14 +17,24 @@ final TextEditingController emailController = TextEditingController();
 
 final TextEditingController passController = TextEditingController();
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => LoginBloc(),
-      child: const LoginView(),
+      child: LoginView(),
     );
   }
 }
@@ -45,15 +57,40 @@ class LoginView extends StatefulWidget {
 class _LoginViewState extends State<LoginView> {
   final SecureStorage storage = SecureStorage(flutterSecureStorage);
   String value = '';
+  String value2 = '';
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   void retrieveValue() async {
     value = await storage.read(key: emailController.text) ?? '';
+    final storage2 = PersistentStorage(
+        sharedPreferences: await SharedPreferences.getInstance());
+    value2 = await storage2.read(key: emailController.text) ?? '';
     setState(() {});
     log(value);
   }
 
+  Future<void> writeValue() async {
+    final storage2 = PersistentStorage(
+        sharedPreferences: await SharedPreferences.getInstance());
+    storage.write(
+      key: emailController.text,
+      value: passController.text,
+    );
+    storage2.write(
+      key: emailController.text,
+      value: passController.text,
+    );
+  }
+
   void deleteValue() async {
+    final storage2 = PersistentStorage(
+        sharedPreferences: await SharedPreferences.getInstance());
     await storage.delete(key: emailController.text);
+    await storage2.delete(key: emailController.text);
     setState(() {});
   }
 
@@ -85,6 +122,13 @@ class _LoginViewState extends State<LoginView> {
                                       .headlineMedium),
                             ),
                             const SizedBox(height: 26),
+                            Center(
+                              child: Text(value2,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium),
+                            ),
+                            const SizedBox(height: 26),
                             Text(DateTime.now().mDY,
                                 style:
                                     Theme.of(context).textTheme.headlineMedium),
@@ -98,10 +142,7 @@ class _LoginViewState extends State<LoginView> {
                               onPressed: () {
                                 if ((formKey.currentState?.validate() ??
                                     false)) {
-                                  storage.write(
-                                    key: emailController.text,
-                                    value: passController.text,
-                                  );
+                                  writeValue();
                                 }
                               },
                             ),

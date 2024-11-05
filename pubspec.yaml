@@ -28,6 +28,7 @@ dependencies:
   persistent_storage:
     path: packages/storage/persistent_storage
   flutter_secure_storage:
+  shared_preferences:
   form_inputs:
     path: packages/form_inputs
   flutter_svg:
