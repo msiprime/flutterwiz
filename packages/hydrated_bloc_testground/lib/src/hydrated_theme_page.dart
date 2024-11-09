@@ -65,7 +65,13 @@ class _HydratedThemePageState extends State<HydratedThemePage> {
                     ),
                     IconButton(
                       icon: Icon(Icons.settings_outlined),
-                      onPressed: () {},
+                      onPressed: () {
+                        context
+                            .read<HydratedThemeBloc>()
+                            // pass system brightness to the event
+                            .add(SystemThemeSelectedEvent(
+                                brightness: MediaQuery.of(context).platformBrightness));
+                      },
                     ),
                     IconButton(
                       icon: Icon(Icons.info_outline),

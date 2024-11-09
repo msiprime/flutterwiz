@@ -18,9 +18,9 @@ final class LightThemeSelectedEvent extends HydratedThemeEvent {
 }
 
 final class SystemThemeSelectedEvent extends HydratedThemeEvent {
-  final ThemeData themeData;
+  final Brightness brightness;
 
   const SystemThemeSelectedEvent({
-    required this.themeData,
+    required this.brightness,
   });
 }

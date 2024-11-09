@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_exploring/dependecies/dependecies.dart';
 import 'package:flutter_exploring/features/product/presentation/bloc/product_bloc.dart';
 import 'package:flutter_exploring/pages/home_page.dart';
+import 'package:flutter_exploring/theme/app_theme.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:hydrated_bloc_testground/hydrated_bloc_testground.dart';
 import 'package:path_provider/path_provider.dart';
@@ -74,8 +75,8 @@ class MyApp extends StatelessWidget {
             : MaterialApp(
                 debugShowCheckedModeBanner: false,
                 debugShowMaterialGrid: false,
-                theme: ThemeData.light(),
-                darkTheme: ThemeData.dark(),
+                theme: AppTheme.lightTheme,
+                darkTheme: AppTheme.darkTheme,
                 themeMode: ThemeMode.light,
                 home: const HomePage(),
               ),
