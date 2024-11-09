@@ -79,10 +79,12 @@ class AppTextField extends StatelessWidget {
     this.autofillHints,
     this.errorMaxLines,
     this.labelStyle,
+    this.suffix,
   });
 
   AppTextField.roundedBorder({
     Key? key,
+    Widget? suffix,
     String? hintText,
     String? labelText,
     String? errorText,
@@ -184,6 +186,7 @@ class AppTextField extends StatelessWidget {
           constraints: constraints,
           hintStyle: TextStyle(
             color: Colors.grey,
+            fontWeight: FontWeight.w400,
           ),
           labelStyle: labelStyle,
           obscuringCharacter: obscuringCharacter,
@@ -227,6 +230,7 @@ class AppTextField extends StatelessWidget {
           suffixText: suffixText,
           prefixIcon: prefixIcon,
           prefix: prefix,
+          suffix: suffix,
           suffixIcon: suffixIcon,
           enabled: enabled,
           filled: filled,
@@ -434,6 +438,7 @@ class AppTextField extends StatelessWidget {
   final TextDirection textDirection;
   final Iterable<String>? autofillHints;
   final int? errorMaxLines;
+  final Widget? suffix;
 
   @override
   Widget build(BuildContext context) {
@@ -496,6 +501,7 @@ class AppTextField extends StatelessWidget {
       autofocus: autofocus,
       textCapitalization: textCapitalization,
       decoration: InputDecoration(
+        suffix: suffix,
         constraints: constraints,
         suffixText: suffixText,
         labelStyle: labelStyle,
