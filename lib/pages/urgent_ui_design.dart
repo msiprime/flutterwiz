@@ -20,11 +20,67 @@ class UrgentUiDesign extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               PassWordTextField(),
+              const SizedBox(height: 20),
+              PrimaryButton(
+                onPressed: () {},
+                title: 'Sign In',
+                fixedSize: const Size(5, 10),
+              ),
               const SizedBox(height: 40),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class PrimaryButton extends StatelessWidget {
+  const PrimaryButton({
+    super.key,
+    this.fixedSize,
+    this.maximumSize,
+    required this.title,
+    required this.onPressed,
+    this.height = 50,
+    this.width = double.infinity,
+  });
+
+  final double height;
+
+  final double width;
+
+  final String title;
+  final VoidCallback onPressed;
+
+  final Size? fixedSize;
+  final Size? maximumSize;
+
+  @override
+  Widget build(BuildContext context) {
+    return FilledButton(
+      onPressed: onPressed,
+      style: ButtonStyle(
+        fixedSize:
+            fixedSize != null ? WidgetStateProperty.all(fixedSize!) : null,
+        maximumSize:
+            maximumSize != null ? WidgetStateProperty.all(maximumSize!) : null,
+        minimumSize: WidgetStateProperty.all(Size(width, height)),
+        textStyle: WidgetStateProperty.all(
+          Theme.of(context).textTheme.bodyLarge,
+        ),
+        visualDensity: VisualDensity.standard,
+        shape: WidgetStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ),
+        backgroundColor:
+            WidgetStateProperty.all(Theme.of(context).primaryColor),
+        foregroundColor:
+            WidgetStateProperty.all(Theme.of(context).colorScheme.onPrimary),
+      ),
+      child: Text(title),
     );
   }
 }
