@@ -110,15 +110,15 @@ class AppTheme {
   // Dark Theme
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
-    primaryColor: AppColors.primary,
+    primaryColor: Colors.grey,
     scaffoldBackgroundColor: AppColors.darkScaffoldBackground,
     appBarTheme: AppBarTheme(
       color: AppColors.darkSurfaceBackground,
       iconTheme: IconThemeData(color: AppColors.darkIcon),
-      titleTextStyle: TextStyle(color: AppColors.darkText),
+      titleTextStyle: TextStyle(color: AppColors.darkTextLight),
     ),
     textTheme: TextTheme(
-      bodyMedium: TextStyle(color: AppColors.darkText),
+      bodyMedium: TextStyle(color: AppColors.darkTextLight),
       bodyLarge: TextStyle(color: AppColors.darkTextLight),
     ),
     colorScheme: ColorScheme.dark(
