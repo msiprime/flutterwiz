@@ -16,7 +16,7 @@ class UrgentUiDesign extends StatelessWidget {
             children: [
               AppTextField.roundedBorder(
                 isLoading: false,
-                hintText: 'Enter your name',
+                hintText: 'Enter ur name',
               ),
               const SizedBox(height: 20),
               PassWordTextField(),
