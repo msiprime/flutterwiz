@@ -124,6 +124,7 @@ class SecondaryButton extends StatelessWidget {
   final Size? fixedSize;
   final Size? maximumSize;
 
+  // component is loading or not
   final bool isLoading;
 
   @override
