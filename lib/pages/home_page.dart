@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_exploring/features/ai_test/presentation/pages/ai_prompt_screen.dart';
 import 'package:flutter_exploring/features/counter_bloc/pages/counter_bloc_screen.dart';
 import 'package:flutter_exploring/features/user/presentation/pages/users_page.dart';
 import 'package:flutter_exploring/login/login.dart';
@@ -37,6 +38,8 @@ class HomePage extends StatelessWidget {
             GoTo(page: LoginPage(), pageName: 'Formz play ground'),
             Gap(8),
             GoTo(page: UrgentUiDesign(), pageName: 'Urgent component test'),
+            Gap(8),
+            GoTo(page: AiPromptScreen(), pageName: 'Gemini AI Prompt'),
           ],
         ),
       ),
