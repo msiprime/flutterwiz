@@ -39,6 +39,9 @@ class AiPromptView extends StatelessWidget {
 
                   if (response != null) {
                     return Markdown(
+                      styleSheet:
+                          MarkdownStyleSheet.fromTheme(Theme.of(context)),
+                      styleSheetTheme: MarkdownStyleSheetBaseTheme.cupertino,
                       data: response,
                       selectable: true,
                     );
