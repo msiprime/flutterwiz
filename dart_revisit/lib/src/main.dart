@@ -1,11 +1,15 @@
 void main(List<String> args) {
-  final letters = <String>[
+  const letters = <String>[
     'a',
     'b',
     'c',
   ];
 
-  final updatedLetters = [...letters, 'd']; // ['a', 'b', 'c', 'd']
+  /// correct way to update a list
+  /// both `letters` and `updatedLetters` are immutable
+  /// works with both `const` and `final`
+
+  const updatedLetters = [...letters, 'd'];
 
   print(updatedLetters);
 }
