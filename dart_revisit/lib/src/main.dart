@@ -1,62 +1,55 @@
 //ignore_for_file: avoid_print
 //ignore_for_file: public_member_api_docs
 
+import 'package:equatable/equatable.dart';
+import 'package:uuid/uuid.dart';
+
 void main() {
   final obj1 = Transaction(
-    name: 'Msi Sakib',
-    age: '27',
-    id: 'Asa12AssocZfeAds',
-    transactionId: '3AsxDawn13as2',
+    name: 'Msi',
+    age: '26',
+    id: 'Asa12AassocZfeAds',
   );
 
   final obj2 = Transaction(
-    name: 'Msi Sakib',
-    age: '28',
-    id: 'Asa12AssocZfeAds',
-    transactionId: '3AsxDawn13as2',
+    name: 'Msi',
+    age: '26',
+    id: 'Asa12sAssocZfeAds',
   );
 
-  final onj3 = Transaction(
-    name: 'Msi Sakib',
-    age: '29',
-    id: 'Asa12AssocZfeAds',
-    transactionId: '3AsxDawn13as2',
+  final obj3 = Transaction(
+    name: 'Msi',
+    age: '26',
+    id: 'Asfa12AssocZfeAds',
   );
 
-  print(obj1.hashCode == obj2.hashCode);
-  print(obj2 == onj3);
+  final obj4 = obj1;
+
+  final mySet = {obj1, obj2, obj3, obj4};
+
+  print(mySet);
 
   print('Object 1 hashcode: ${obj1.hashCode}');
   print('Object 2 hashcode: ${obj2.hashCode}');
-  print('Object 3 hashcode: ${onj3.hashCode}');
+  print('Object 3 hashcode: ${obj3.hashCode}');
 }
 
-// String? doSomething(String? a, String? b) {
-//   return a != null
-//       ? a.isEmpty
-//           ? a = 'A is empty'
-//           : a = 'A is not empty'
-//       : a ??= b;
-// }
-
-class Transaction {
+class Transaction extends Equatable {
   Transaction({
     required this.id,
     required this.name,
     required this.age,
-    required this.transactionId,
-  });
+    String? transactionId,
+  }) : transactionId = transactionId ?? const Uuid().v1();
 
-  String id;
-  String name;
-  String age;
-  String transactionId;
-
-  @override
-  int get hashCode => name.hashCode;
+  final String id;
+  final String name;
+  final String age;
+  final String transactionId;
 
   @override
-  bool operator ==(Object other) {
-    return hashCode == other.hashCode;
-  }
+  String toString() => transactionId.substring(0, 12);
+
+  @override
+  List<Object?> get props => [transactionId];
 }
