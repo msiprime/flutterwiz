@@ -11,5 +11,5 @@ void main(List<String> args) {
 
   const updatedLetters = [...letters, 'd'];
 
-  print(updatedLetters);
+  print(updatedLetters); // [a, b, c, d]
 }
