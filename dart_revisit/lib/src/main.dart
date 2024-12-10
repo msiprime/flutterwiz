@@ -8,19 +8,16 @@ void main() {
   final obj1 = Transaction(
     name: 'Msi',
     age: '26',
-    id: 'Asa12AassocZfeAds',
   );
 
   final obj2 = Transaction(
     name: 'Msi',
     age: '26',
-    id: 'Asa12sAssocZfeAds',
   );
 
   final obj3 = Transaction(
     name: 'Msi',
     age: '26',
-    id: 'Asfa12AssocZfeAds',
   );
 
   final obj4 = obj1;
@@ -36,20 +33,21 @@ void main() {
 
 class Transaction extends Equatable {
   Transaction({
-    required this.id,
     required this.name,
     required this.age,
-    String? transactionId,
-  }) : transactionId = transactionId ?? const Uuid().v1();
+    String? id,
+    String? trxId,
+  })  : trxId = trxId ?? const Uuid().v1(),
+        id = id ?? const Uuid().v1();
 
   final String id;
   final String name;
   final String age;
-  final String transactionId;
+  final String trxId;
 
   @override
-  String toString() => transactionId.substring(0, 12);
+  String toString() => trxId.substring(0, 12);
 
   @override
-  List<Object?> get props => [transactionId];
+  List<Object?> get props => [trxId];
 }
