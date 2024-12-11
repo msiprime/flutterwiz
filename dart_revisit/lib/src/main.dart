@@ -20,9 +20,14 @@ void main() {
     age: '26',
   );
 
+  final obj5 = Transaction2(
+    name: 'Msi',
+    age: '26',
+  );
+
   final obj4 = obj1;
 
-  final mySet = {obj1, obj2, obj3, obj4};
+  final mySet = {obj1, obj2, obj3, obj4, obj5};
 
   print(mySet);
 
@@ -33,6 +38,27 @@ void main() {
 
 class Transaction extends Equatable {
   Transaction({
+    required this.name,
+    required this.age,
+    String? id,
+    String? trxId,
+  })  : trxId = trxId ?? const Uuid().v1(),
+        id = id ?? const Uuid().v1();
+
+  final String id;
+  final String name;
+  final String age;
+  final String trxId;
+
+  @override
+  String toString() => trxId.substring(0, 12);
+
+  @override
+  List<Object?> get props => [trxId];
+}
+
+class Transaction2 extends Equatable {
+  Transaction2({
     required this.name,
     required this.age,
     String? id,
