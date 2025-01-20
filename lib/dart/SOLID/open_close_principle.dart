@@ -69,3 +69,14 @@ void main() {
   print(areaCalculator.calculateArea(rectangle));
   print(areaCalculator.calculateArea(circle));
 }
+
+// OCP introduces to abstraction and interfaces.
+// It allows you to create a new class that implements the interface
+// and pass it to the AreaCalculator without modifying the AreaCalculator class.
+// This way, you can add new functionality without modifying the existing code.
+// This is the essence of the Open-Close Principle.
+// The AreaCalculator class is open for extension but closed for modification.
+// This is the essence of the Open-Close Principle.
+// The AreaCalculator class is open for extension but closed for modification.
+// This is the essence of the Open-Close Principle.
+// OCP helps with unintended consequences of modifying existing code.
