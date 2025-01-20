@@ -4,8 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:flutter_exploring/dependecies/dependecies.dart';
-import 'package:flutter_exploring/features/product/presentation/bloc/product_bloc.dart';
 import 'package:flutter_exploring/pages/home_page.dart';
 import 'package:flutter_exploring/theme/app_theme.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
@@ -16,7 +14,6 @@ import 'package:path_provider/path_provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = const AppBlocObserver();
-  await setupServiceLocator();
   await dotenv.load(fileName: ".env");
   Gemini.init(apiKey: dotenv.env['GEMINI_API_KEY_PAID'] ?? '');
   HydratedBloc.storage = await HydratedStorage.build(
@@ -61,9 +58,6 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider<HydratedThemeBloc>(
           create: (context) => HydratedThemeBloc(),
-        ),
-        BlocProvider<ProductBloc>(
-          create: (context) => sl.get<ProductBloc>(),
         ),
       ],
       child: BlocBuilder<HydratedThemeBloc, HydratedThemeState>(

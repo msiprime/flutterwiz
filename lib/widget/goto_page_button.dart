@@ -22,14 +22,17 @@ class GoTo extends StatelessWidget {
               ),
             ),
             textStyle: WidgetStateProperty.all(const TextStyle(fontSize: 19)),
-            backgroundColor: WidgetStateProperty.all(Colors.grey),
+            backgroundColor: WidgetStateProperty.all(Colors.grey[300]),
             foregroundColor: WidgetStateProperty.all(Colors.black),
           ),
           onPressed: () {
             Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) => page));
           },
-          child: Text('Go to $pageName page')),
+          child: Text(
+            'Go to $pageName page',
+            style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+          )),
     );
   }
 }
