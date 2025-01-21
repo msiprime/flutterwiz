@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+//ignore_for_file: avoid_print
 /// Interface for creating different types of markers
 abstract class MarkerFactory {
   Marker createMarker(LatLng position);
