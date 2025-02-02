@@ -2,13 +2,10 @@ import 'dart:developer';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_exploring/pages/home_page.dart';
-import 'package:flutter_exploring/theme/app_theme.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
-import 'package:hydrated_bloc_testground/hydrated_bloc_testground.dart';
 import 'package:path_provider/path_provider.dart';
 
 void main() async {
@@ -54,31 +51,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<HydratedThemeBloc>(
-          create: (context) => HydratedThemeBloc(),
-        ),
-      ],
-      child: BlocBuilder<HydratedThemeBloc, HydratedThemeState>(
-        builder: (context, state) => (state is ThemeChanged)
-            ? MaterialApp(
-                debugShowCheckedModeBanner: false,
-                debugShowMaterialGrid: false,
-                theme: state.themeData,
-                darkTheme: state.themeData,
-                themeMode: ThemeMode.system,
-                home: const HomePage(),
-              )
-            : MaterialApp(
-                debugShowCheckedModeBanner: false,
-                debugShowMaterialGrid: false,
-                theme: AppTheme.lightTheme,
-                darkTheme: AppTheme.darkTheme,
-                themeMode: ThemeMode.light,
-                home: const HomePage(),
-              ),
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      debugShowMaterialGrid: false,
+      theme: ThemeData.dark(),
+      themeMode: ThemeMode.system,
+      home: const HomePage(),
     );
   }
 }

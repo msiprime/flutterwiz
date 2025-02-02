@@ -21,9 +21,6 @@ class GoTo extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
             ),
-            textStyle: WidgetStateProperty.all(const TextStyle(fontSize: 19)),
-            backgroundColor: WidgetStateProperty.all(Colors.grey[300]),
-            foregroundColor: WidgetStateProperty.all(Colors.black),
           ),
           onPressed: () {
             Navigator.of(context)

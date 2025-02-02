@@ -18,9 +18,6 @@ dependencies:
   equatable: ^2.0.5
   path_provider: ^2.1.4
 
-  hydrated_bloc_testground:
-    path: packages/hydrated_bloc_testground
-
   storage:
     path: packages/storage/storage
   secure_storage:
