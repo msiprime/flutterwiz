@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       debugShowMaterialGrid: false,
-      theme: ThemeData.dark(),
+      // theme: ThemeData.dark(),
       themeMode: ThemeMode.system,
       home: const HomePage(),
     );
