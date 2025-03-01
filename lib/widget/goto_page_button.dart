@@ -28,7 +28,7 @@ class GoTo extends StatelessWidget {
           },
           child: Text(
             'Go to $pageName page',
-            style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+            style: TextStyle(fontSize: 16),
           )),
     );
   }

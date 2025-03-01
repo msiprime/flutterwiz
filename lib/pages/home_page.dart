@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_exploring/pages/memory_leak_page.dart';
 import 'package:flutter_exploring/widget/goto_page_button.dart';
 import 'package:gap/gap.dart';
 
@@ -19,10 +20,15 @@ class HomePage extends StatelessWidget {
           children: [
             SizedBox(height: 20),
             Gap(8),
-            GoTo(
-              page: const Scaffold(),
-              pageName: 'Hydrated Bloc Testground',
+            Text(
+              'Welcome to the Home Page',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
+            Gap(8),
+            GoTo(page: LeakyPage(), pageName: "Leaky Widget")
           ],
         ),
       ),
