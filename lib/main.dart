@@ -88,3 +88,18 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+mixin DisposableMixin<T extends StatefulWidget> on State<T> {
+  List<ChangeNotifier> get disposables;
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    for (final disposable in disposables) {
+      disposable.dispose();
+    }
+
+    log('dispose $runtimeType disposables');
+  }
+}
