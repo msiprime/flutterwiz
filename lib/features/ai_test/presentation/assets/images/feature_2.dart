@@ -4,8 +4,8 @@ interface class Y {}
 
 abstract interface class Z {}
 
-class A extends X implements Y, Z {}
+class AxyZ extends X implements Y, Z {}
 
-class B extends A {}
+class B extends Y {}
 
 class C extends B {}
