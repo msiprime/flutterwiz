@@ -18,9 +18,6 @@ dependencies:
   equatable: ^2.0.5
   path_provider: ^2.1.4
 
-  hydrated_bloc_testground:
-    path: packages/hydrated_bloc_testground
-
   storage:
     path: packages/storage/storage
   secure_storage:
@@ -52,6 +49,7 @@ dependencies:
   flutter_dotenv: ^5.2.1
   markdown: ^7.2.2
   flutter_markdown: ^0.7.4+2
+  google_maps_flutter: ^2.10.0
 
 
 
